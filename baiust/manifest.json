@@ -1,0 +1,22 @@
+{
+  "short_name": "BAIUST",
+  "name": "BAIUST stuff for CSE-22",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000",
+  "description": "A web app for BAIUST CSE 22nd batch students"
+}

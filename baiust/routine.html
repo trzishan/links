@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Weekly Schedule</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --accent: #3498db;
+            --bg: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h1 { text-align: center; margin-bottom: 25px; }
+
+        .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #e0e0e0;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button.active {
+            background: var(--accent);
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th { background-color: #f8f9fa; }
+
+        .instructor-tag {
+            display: inline-block;
+            background: #ecf0f1;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin-right: 5px;
+        }
+
+        .no-class { text-align: center; padding: 20px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="dayDisplay">Weekly Schedule</h1>
+    
+    <div class="tabs" id="tabContainer">
+        </div>
+
+    <table id="scheduleTable">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Subject</th>
+                <th>Instructor(s)</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            </tbody>
+    </table>
+</div>
+
+<script>
+    const scheduleData = {
+        "Sunday": [
+            { "subject": "Math", "time": "10:30-11:25", "instructors": ["Nasrin Sultana"] },
+            { "subject": "Cse", "time": "12:35-2:30", "instructors": ["Md. Imran Hossain Emu"] },
+            { "subject": "Ged", "time": "2:35-4:30", "instructors": ["Md. Rayhan Morshed"] }
+        ],
+        "Monday": [
+            { "subject": "Math", "time": "10:30-12:25", "instructors": ["Nasrin Sultana"] },
+            { "subject": "Cse", "time": "12:30-1:25", "instructors": ["Md. Imran Hossain Emu"] },
+            { "subject": "Cse lab(G3)", "time": "1:30-4:30", "instructors": ["Md. Imran Hossain Emu", "Hasan Abdullah"] }
+        ],
+        "Tuesday": [
+            { "subject": "Physics", "time": "10:30-11:25", "instructors": ["Md. Imdadul Hoque"] },
+            { "subject": "Eee", "time": "11:30-12:25", "instructors": ["M M Shoaib Hasan"] },
+            { "subject": "English", "time": "12:35-2:30", "instructors": ["Bushra Jannat"] }
+        ],
+        "Wednesday": [
+            { "subject": "Physics lab(G4)", "time": "8:30-10:25", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"] },
+            { "subject": "Eee lab(G3)", "time": "8:30-11:25", "instructors": ["Mohammed Hasibul Hasan Chowdhury", "Md. Nahidul Alam"] },
+            { "subject": "Physics lab(G3)", "time": "11:35-1:30", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"] },
+            { "subject": "Eee lab(G4)", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"] },
+            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"] }
+        ],
+        "Thursday": [
+            { "subject": "Cse lab(G4)", "time": "8:30-11:25", "instructors": ["Md. Imran Hossain Emu", "Dr. Nargis Parvin"] },
+            { "subject": "English", "time": "11:35-12:30", "instructors": ["Fowjia Sultana"] },
+            { "subject": "Eee", "time": "12:35-2:30", "instructors": ["M M Shoaib Hasan"] },
+            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"] }
+        ]
+    };
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+    const tabContainer = document.getElementById('tabContainer');
+    const tableBody = document.getElementById('tableBody');
+    const dayDisplay = document.getElementById('dayDisplay');
+
+    // Initialize Tabs
+    days.forEach(day => {
+        const btn = document.createElement('button');
+        btn.innerText = day;
+        btn.onclick = () => showSchedule(day);
+        btn.id = `btn-${day}`;
+        tabContainer.appendChild(btn);
+    });
+
+    function showSchedule(day) {
+        // Update Buttons
+        document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        const activeBtn = document.getElementById(`btn-${day}`);
+        if(activeBtn) activeBtn.classList.add('active');
+
+        dayDisplay.innerText = `${day}'s Schedule`;
+        tableBody.innerHTML = '';
+
+        const classes = scheduleData[day] || [];
+
+        if (classes.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="3" class="no-class">No classes scheduled for today.</td></tr>';
+            return;
+        }
+
+        classes.forEach(item => {
+            const row = `<tr>
+                <td><strong>${item.time}</strong></td>
+                <td>${item.subject}</td>
+                <td>${item.instructors.map(name => `<span class="instructor-tag">${name}</span>`).join('')}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+    }
+
+    // Auto-load current day
+    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+    if (days.includes(today)) {
+        showSchedule(today);
+    } else {
+        showSchedule("Sunday"); // Default to Sunday if it's Friday/Saturday
+    }
+</script>
+
+</body>
+</html>
