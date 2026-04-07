@@ -6,9 +6,9 @@
     <title>University Weekly Schedule</title>
     <style>
         :root {
-            --primary: #2c3e50;
+            --primary: #eff7ff;
             --accent: green;
-            --bg: #f4f7f6;
+            --bg: #151b19;
         }
 
         body {
@@ -18,13 +18,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            /* padding: 20px; */
+            max-width: 100vw;
         }
 
         .container {
             width: 100%;
             max-width: 800px;
-            background: white;
+            background: rgb(32, 33, 20);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -34,7 +35,7 @@
 
         .tabs {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 10px;
@@ -67,11 +68,11 @@
             border-bottom: 1px solid #ddd;
         }
 
-        th { background-color: #f8f9fa; }
+        th { background-color: var(--bg); }
 
         .instructor-tag {
             display: inline-block;
-            background: #ecf0f1;
+            background: #263b40;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.9em;
