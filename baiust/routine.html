@@ -6,9 +6,9 @@
     <title>University Weekly Schedule</title>
     <style>
         :root {
-            --primary: #2c3e50;
+            --primary: #eff7ff;
             --accent: green;
-            --bg: #f4f7f6;
+            --bg: #151b19;
         }
 
         body {
@@ -18,13 +18,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+            /* padding: 20px; */
+            max-width: 100vw;
         }
 
         .container {
             width: 100%;
             max-width: 800px;
-            background: white;
+            background: rgb(32, 33, 20);
             padding: 30px;
             border-radius: 12px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
@@ -34,7 +35,7 @@
 
         .tabs {
             display: flex;
-            justify-content: space-around;
+            justify-content: center;
             margin-bottom: 20px;
             flex-wrap: wrap;
             gap: 10px;
@@ -67,11 +68,11 @@
             border-bottom: 1px solid #ddd;
         }
 
-        th { background-color: #f8f9fa; }
+        th { background-color: var(--bg); }
 
         .instructor-tag {
             display: inline-block;
-            background: #ecf0f1;
+            background: #263b40;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.9em;
@@ -95,6 +96,7 @@
                 <th>Time</th>
                 <th>Subject</th>
                 <th>Instructor(s)</th>
+                <th>Room</th>
             </tr>
         </thead>
         <tbody id="tableBody">
@@ -105,32 +107,32 @@
 <script>
     const scheduleData = {
         "Sunday": [
-            { "subject": "Math", "time": "10:30-11:25", "instructors": ["Nasrin Sultana"] },
-            { "subject": "Cse", "time": "12:35-2:30", "instructors": ["Md. Imran Hossain Emu"] },
-            { "subject": "Ged", "time": "2:35-4:30", "instructors": ["Md. Rayhan Morshed"] }
+            { "subject": "Math", "time": "10:30-11:25", "instructors": ["Nasrin Sultana"] , "room": "201"},
+            { "subject": "Cse", "time": "12:35-2:30", "instructors": ["Md. Imran Hossain Emu"], "room": "201" },
+            { "subject": "Ged", "time": "2:35-4:30", "instructors": ["Md. Rayhan Morshed"], "room": "201" }
         ],
         "Monday": [
-            { "subject": "Math", "time": "10:30-12:25", "instructors": ["Nasrin Sultana"] },
-            { "subject": "Cse", "time": "12:30-1:25", "instructors": ["Md. Imran Hossain Emu"] },
-            { "subject": "Cse lab(G3)", "time": "1:30-4:30", "instructors": ["Md. Imran Hossain Emu", "Hasan Abdullah"] }
+            { "subject": "Math", "time": "10:30-12:25", "instructors": ["Nasrin Sultana"], "room": "201" },
+            { "subject": "Cse", "time": "12:30-1:25", "instructors": ["Md. Imran Hossain Emu"], "room": "201" },
+            { "subject": "Cse lab(G3)", "time": "1:30-4:30", "instructors": ["Md. Imran Hossain Emu", "Hasan Abdullah"], "room": "407" }
         ],
         "Tuesday": [
-            { "subject": "Physics", "time": "10:30-11:25", "instructors": ["Md. Imdadul Hoque"] },
-            { "subject": "Eee", "time": "11:30-12:25", "instructors": ["M M Shoaib Hasan"] },
-            { "subject": "English", "time": "12:35-2:30", "instructors": ["Bushra Jannat"] }
+            { "subject": "Physics", "time": "10:30-11:25", "instructors": ["Md. Imdadul Hoque"], "room": "201" },
+            { "subject": "Eee", "time": "11:30-12:25", "instructors": ["M M Shoaib Hasan"], "room": "312" },
+            { "subject": "English", "time": "12:35-2:30", "instructors": ["Bushra Jannat"], "room": "201" }
         ],
         "Wednesday": [
-            { "subject": "Physics lab(G4)", "time": "8:30-10:25", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"] },
-            { "subject": "Eee lab(G3)", "time": "8:30-11:25", "instructors": ["Mohammed Hasibul Hasan Chowdhury", "Md. Nahidul Alam"] },
-            { "subject": "Physics lab(G3)", "time": "11:35-1:30", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"] },
-            { "subject": "Eee lab(G4)", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"] },
-            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"] }
+            { "subject": "Physics lab(G4)", "time": "8:30-10:25", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
+            { "subject": "Eee lab(G3)", "time": "8:30-11:25", "instructors": ["Mohammed Hasibul Hasan Chowdhury", "Md. Nahidul Alam"], "room": "EEE Lab" },
+            { "subject": "Physics lab(G3)", "time": "11:35-1:30", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
+            { "subject": "Eee lab(G4)", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"], "room": "EEE Lab" },
+            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"], "room": "305" }
         ],
         "Thursday": [
-            { "subject": "Cse lab(G4)", "time": "8:30-11:25", "instructors": ["Md. Imran Hossain Emu", "Dr. Nargis Parvin"] },
-            { "subject": "English", "time": "11:35-12:30", "instructors": ["Fowjia Sultana"] },
-            { "subject": "Eee", "time": "12:35-2:30", "instructors": ["M M Shoaib Hasan"] },
-            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"] }
+            { "subject": "Cse lab(G4)", "time": "8:30-11:25", "instructors": ["Md. Imran Hossain Emu", "Dr. Nargis Parvin"], "room": "407" },
+            { "subject": "English", "time": "11:35-12:30", "instructors": ["Fowjia Sultana"], "room": "410" },
+            { "subject": "Eee", "time": "12:35-2:30", "instructors": ["M M Shoaib Hasan"], "room": "410" },
+            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"], "room": "410" }
         ]
     };
 
@@ -169,6 +171,7 @@
                 <td><strong>${item.time}</strong></td>
                 <td>${item.subject}</td>
                 <td>${item.instructors.map(name => `<span class="instructor-tag">${name}</span>`).join('')}</td>
+                <td>${item.room}</td>
             </tr>`;
             tableBody.innerHTML += row;
         });
