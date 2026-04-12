@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essential Git Cheatsheet</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --container-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --heading-color: #58a6ff;
+            --sub-heading: #79c0ff;
+            --code-bg: #010409;
+            --accent-color: #238636;
+            --warning-bg: #382324;
+            --warning-border: #f85149;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        h1 {
+            color: var(--heading-color);
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-top: 0;
+        }
+        h2 {
+            color: var(--sub-heading);
+            font-size: 1.4rem;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            border-left: 4px solid var(--heading-color);
+            padding-left: 10px;
+        }
+        p {
+            margin: 10px 0;
+        }
+        ul {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        li {
+            margin-bottom: 15px;
+        }
+        .command-desc {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+            background-color: var(--code-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            border: 1px solid var(--border-color);
+            color: #ff7b72;
+            display: inline-block;
+            margin-top: 2px;
+        }
+        .warning-box {
+            background-color: var(--warning-bg);
+            border: 1px solid var(--warning-border);
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        .warning-box h3 {
+            color: var(--warning-border);
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Essential Git Cheatsheet</h1>
+    
+    <div class="grid">
+        <!-- Section 1 -->
+        <div>
+            <h2>1. Setup & Initialization</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">Set your global username</span>
+                    <code>git config --global user.name "Your Name"</code>
+                </li>
+                <li>
+                    <span class="command-desc">Set your global email</span>
+                    <code>git config --global user.email "you@example.com"</code>
+                </li>
+                <li>
+                    <span class="command-desc">Initialize a new local repository</span>
+                    <code>git init</code>
+                </li>
+                <li>
+                    <span class="command-desc">Clone an existing remote repository</span>
+                    <code>git clone &lt;repository_url&gt;</code>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 2 -->
+        <div>
+            <h2>2. Basic Workflow</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">Check the status of your working directory</span>
+                    <code>git status</code>
+                </li>
+                <li>
+                    <span class="command-desc">Add a specific file to the staging area</span>
+                    <code>git add &lt;file_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Add all modified and new files to staging</span>
+                    <code>git add .</code>
+                </li>
+                <li>
+                    <span class="command-desc">Commit your staged changes with a message</span>
+                    <code>git commit -m "Your commit message"</code>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 3 -->
+        <div>
+            <h2>3. Branching & Merging</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">List all local branches</span>
+                    <code>git branch</code>
+                </li>
+                <li>
+                    <span class="command-desc">Create a new branch</span>
+                    <code>git branch &lt;branch_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Switch to an existing branch</span>
+                    <code>git switch &lt;branch_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Create a new branch and switch to it</span>
+                    <code>git switch -c &lt;branch_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Merge a branch into your current branch</span>
+                    <code>git merge &lt;branch_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Delete a merged branch</span>
+                    <code>git branch -d &lt;branch_name&gt;</code>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 4 -->
+        <div>
+            <h2>4. Remote Repositories</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">Download changes and integrate with local</span>
+                    <code>git pull</code>
+                </li>
+                <li>
+                    <span class="command-desc">Upload local commits to the remote repo</span>
+                    <code>git push origin &lt;branch_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Fetch remote changes (without merging them)</span>
+                    <code>git fetch</code>
+                </li>
+                <li>
+                    <span class="command-desc">List connected remote repositories</span>
+                    <code>git remote -v</code>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 5 -->
+        <div>
+            <h2>5. Inspect & Compare</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">View commit history</span>
+                    <code>git log --oneline</code>
+                </li>
+                <li>
+                    <span class="command-desc">Show differences in unstaged files</span>
+                    <code>git diff</code>
+                </li>
+                <li>
+                    <span class="command-desc">Show differences in staged files</span>
+                    <code>git diff --staged</code>
+                </li>
+                <li>
+                    <span class="command-desc">Show who modified what in a file</span>
+                    <code>git blame &lt;file_name&gt;</code>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 6 -->
+        <div>
+            <h2>6. Stashing & Undoing</h2>
+            <ul>
+                <li>
+                    <span class="command-desc">Temporarily shelve uncommitted work</span>
+                    <code>git stash</code>
+                </li>
+                <li>
+                    <span class="command-desc">Restore the most recently stashed work</span>
+                    <code>git stash pop</code>
+                </li>
+                <li>
+                    <span class="command-desc">Unstage a file (Modern Git)</span>
+                    <code>git restore --staged &lt;file_name&gt;</code>
+                </li>
+                <li>
+                    <span class="command-desc">Modify the very last commit</span>
+                    <code>git commit --amend</code>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Warnings -->
+    <div class="warning-box">
+        <h3>⚠️ Destructive Operations (Proceed with Caution)</h3>
+        <ul>
+            <li>
+                <span class="command-desc">Discard all local changes in a file (irreversible)</span>
+                <code>git restore &lt;file_name&gt;</code>
+            </li>
+            <li>
+                <span class="command-desc">Reset everything to match the last commit (erases uncommitted work)</span>
+                <code>git reset --hard HEAD</code>
+            </li>
+            <li>
+                <span class="command-desc">Force delete a branch with unmerged changes</span>
+                <code>git branch -D &lt;branch_name&gt;</code>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+
