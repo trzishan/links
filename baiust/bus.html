@@ -3,12 +3,221 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>BAIUST Transport Schedule</title>
+    <style>
+        :root {
+            --primary: #1a531a;
+            --secondary: #38b000;
+            --accent: #008080;
+            --warning: #d9534f;
+            --light-bg: #f4f7f6;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            line-height: 1.5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .uni-name-bn { font-size: 1rem; margin-bottom: 5px; display: block; }
+        .uni-name-en { font-size: 1.1rem; font-weight: bold; line-height: 1.2; }
+
+        /* Meta Info */
+        .meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #e9f5e9;
+            border-bottom: 1px solid #ddd;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+
+        .effective-date {
+            color: var(--warning);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* Table Responsiveness */
+        .table-container {
+            width: 100%;
+            overflow-x: auto; /* Allows horizontal swipe on mobile */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px; /* Ensures table doesn't squash too much */
+        }
+
+        th {
+            background: #f8f9fa;
+            text-align: left;
+            padding: 12px 15px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #666;
+            border-bottom: 2px solid var(--secondary);
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: middle;
+        }
+
+        .route-cell {
+            font-weight: bold;
+            color: var(--primary);
+            background: #fdfdfd;
+            position: sticky;
+            left: 0; /* Keeps route name visible while scrolling */
+            z-index: 1;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+
+        .time-wrap { font-weight: 600; }
+        .bus-id {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: normal;
+        }
+
+        /* Down Trip Section */
+        .down-trip {
+            padding: 20px;
+            background: #fff9f0;
+            border-top: 5px solid #f39c12;
+        }
+
+        .down-trip h3 {
+            color: #e67e22;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .policy-item {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .highlight { color: var(--warning); font-weight: bold; }
+        .bg-highlight { background: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+
+        /* Mobile Specific Adjustments */
+        @media (max-width: 600px) {
+            header { padding: 15px; }
+            .uni-name-en { font-size: 1rem; }
+            .meta-bar { flex-direction: column; align-items: flex-start; }
+            td, th { padding: 10px; }
+        }
+    </style>
 </head>
 <body>
-    <p>
-        Bus will be available till <b>7:40 AM</b>, <b>9:30 AM</b> and <b>11:10 AM </b> at <b>Tomsom Bridge</b>, <b>Eidgah</b> and <b>Police Line</b>
-    </p>
+
+<div class="container">
+    <header>
+        <span class="uni-name-bn">বাংলাদেশ আর্মি ইন্টারন্যাশনাল ইউনিভার্সিটি অফ সায়েন্স এন্ড টেকনোলজি</span>
+        <div class="uni-name-en">BAIUST, CUMILLA</div>
+    </header>
+
+    <div class="meta-bar">
+        <span class="badge">TRANSPORT SCHEDULE (STUDENTS)</span>
+        <span class="effective-date">Effective: 28 April 2026</span>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Route</th>
+                    <th>Up Time 1</th>
+                    <th>Up Time 2</th>
+                    <th>Up Time 3</th>
+                    <th>Up Time 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="route-cell">Eidgah</td>
+                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[2XB]</span></div></td>
+                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[3XB]</span></div></td>
+                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[6XB]</span></div></td>
+                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[3XB]</span></div></td>
+                </tr>
+                <tr>
+                    <td class="route-cell">Police Line</td>
+                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[1XB]</span></div></td>
+                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[2XB]</span></div></td>
+                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[4XB]</span></div></td>
+                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[1XB]</span></div></td>
+                </tr>
+                <tr>
+                    <td class="route-cell">Tomsom Bridge</td>
+                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[2XB]</span></div></td>
+                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[3XB]</span></div></td>
+                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[5XB]</span></div></td>
+                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[2XB]</span></div></td>
+                </tr>
+                <tr>
+                    <td class="route-cell">Coatbari</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><div class="time-wrap">9:50 AM <span class="bus-id">[1XB]</span></div></td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="down-trip">
+        <h3>Down Trip Policy</h3>
+        <div class="policy-item">• Starts at <span class="highlight">12:15 PM</span> (Once seats are occupied).</div>
+        <div class="policy-item">• Regular return ends at <span class="bg-highlight">3:40 PM</span>.</div>
+        <div class="policy-item">• Post-3:30 PM classes: Additional trips available (Selected students).</div>
+    </div>
+</div>
+
 </body>
 </html>
