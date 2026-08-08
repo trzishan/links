@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Weekly Schedule</title>
+    <title>Class Routine</title>
     <style>
         :root {
             --primary: #eff7ff;
@@ -126,8 +126,7 @@
             { "subject": "Physics Lab G4", "time": "8:30-10:25", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
             { "subject": "EEE Lab G3", "time": "8:30-11:25", "instructors": ["Mohammed Hasibul Hasan Chowdhury", "Md. Nahidul Alam"], "room": "EEE Lab" },
             { "subject": "Physics Lab G3", "time": "11:35-1:30", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
-            { "subject": "EEE Lab G4", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"], "room": "EEE Lab" },
-            { "subject": "Physics", "time": "2:35-3:30", "instructors": ["Md. Imdadul Hoque"], "room": "305" }
+            { "subject": "EEE Lab G4", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"], "room": "EEE Lab" }
         ],
         "Thursday": [
             { "subject": "CSE Lab G4", "time": "8:30-11:25", "instructors": ["Md. Imran Hossain Emu", "Dr. Nargis Parvin"], "room": "407" },
@@ -162,7 +161,7 @@
         const classes = scheduleData[day] || [];
 
         if (classes.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="3" class="no-class">No classes scheduled for today.</td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="4" class="no-class">No classes scheduled for today.</td></tr>';
             return;
         }
 
