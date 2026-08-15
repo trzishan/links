@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Physics Review Guide</title>
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --primary-color: #0d6efd;
+            --secondary-color: #495057;
+            --accent-bg: #e7f1ff;
+            --border-color: #dee2e6;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 12px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #111;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 12px;
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-top: 40px;
+            font-size: 1.4rem;
+        }
+
+        .topic-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+        }
+
+        .topic-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #000;
+            margin-top: 0;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 10px;
+        }
+
+        .formula-box {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 16px;
+            margin: 14px 0;
+            border-radius: 0 6px 6px 0;
+            font-family: 'Cambria Math', 'Times New Roman', Times, serif;
+            font-size: 1.1rem;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .derivation-step {
+            background-color: #fafafa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+        }
+
+        .diagram-box {
+            background-color: #1e1e1e;
+            color: #00ff66;
+            padding: 14px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre;
+            overflow-x: auto;
+            font-size: 0.85rem;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 15px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 520px;
+        }
+
+        table, th, td {
+            border: 1px solid var(--border-color);
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--accent-bg);
+            color: #000;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            padding: 0 4px;
+        }
+
+        .fraction > span {
+            display: block;
+        }
+
+        .fraction span.fdn {
+            border-top: 1px solid #000;
+        }
+
+        @media (min-width: 600px) {
+            body {
+                padding: 24px;
+            }
+
+            h1 {
+                font-size: 2.4rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .topic-card {
+                padding: 24px;
+                margin-bottom: 24px;
+            }
+
+            .topic-title {
+                font-size: 1.35rem;
+            }
+
+            .diagram-box {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Detailed Physics Study Guide</h1>
+
+    <!-- SECTION 1 -->
+    <h2>1. Electricity & Magnetism</h2>
+
+    <div class="topic-card">
+        <div class="topic-title">Gauss's Law & Coulomb's Law Derivation</div>
+        <p><strong>Gauss's Law Statement:</strong> The total electric flux Φ<sub>E</sub> through any closed Gaussian surface is equal to the net enclosed electric charge Q<sub>enc</sub> divided by the permittivity of free space ε<sub>0</sub>.</p>
+        <div class="formula-box">
+            Φ<sub>E</sub> = ∮ <b>E</b> · d<b>A</b> = 
+            <div class="fraction">
+                <span>Q<sub>enc</sub></span>
+                <span class="fdn">ε<sub>0</sub></span>
+            </div>
+        </div>
+
+        <p><strong>Step-by-Step Derivation of Coulomb's Law from Gauss's Law:</strong></p>
+        <div class="derivation-step">
+            <ol>
+                <li>Consider a point charge +q located in free space. Imagine a spherical Gaussian surface of radius r centered on charge q.</li>
+                <li>By spherical symmetry, the magnitude of the electric field <b>E</b> is identical at all points on the surface, pointing radially outward everywhere.</li>
+                <li>Therefore, the angle θ between <b>E</b> and the area vector d<b>A</b> is 0° (cos 0° = 1).</li>
+                <li>Evaluate the surface integral:
+                    <div class="formula-box">
+                        ∮ <b>E</b> · d<b>A</b> = ∮ E dA = E ∮ dA
+                    </div>
+                </li>
+                <li>Since the total area of a sphere of radius r is A = 4πr<sup>2</sup>:
+                    <div class="formula-box">
+                        E (4πr<sup>2</sup>) = 
+                        <div class="fraction">
+                            <span>q</span>
+                            <span class="fdn">ε<sub>0</sub></span>
+                        </div>
+                        &nbsp;⇒&nbsp; E = 
+                        <div class="fraction">
+                            <span>1</span>
+                            <span class="fdn">4πε<sub>0</sub></span>
+                        </div>
+                        · 
+                        <div class="fraction">
+                            <span>q</span>
+                            <span class="fdn">r<sup>2</sup></span>
+                        </div>
+                    </div>
+                </li>
+                <li>Placing a test charge q<sub>0</sub> at distance r, the electrostatic force experienced is F = q<sub>0</sub>E:
+                    <div class="formula-box">
+                        F = 
+                        <div class="fraction">
+                            <span>1</span>
+                            <span class="fdn">4πε<sub>0</sub></span>
+                        </div>
+                        · 
+                        <div class="fraction">
+                            <span>q · q<sub>0</sub></span>
+                            <span class="fdn">r<sup>2</sup></span>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+            <p>This explicitly derives <strong>Coulomb's Law</strong>.</p>
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Electric Field (E), Potential (V), and Their Relation</div>
+        <p><strong>Electric Field Intensity (E):</strong> Force per unit charge exerted on a positive test charge placed at a point in space. It is a vector quantity (N/C or V/m).</p>
+        <div class="formula-box">
+            E = 
+            <div class="fraction">
+                <span>1</span>
+                <span class="fdn">4πε<sub>0</sub></span>
+            </div>
+            · 
+            <div class="fraction">
+                <span>Q</span>
+                <span class="fdn">r<sup>2</sup></span>
+            </div>
+        </div>
+
+        <p><strong>Electric Potential (V):</strong> Work done in bringing a unit positive test charge from infinity to a specific point against electrostatic forces. It is a scalar quantity (Volts).</p>
+        <div class="formula-box">
+            V = 
+            <div class="fraction">
+                <span>1</span>
+                <span class="fdn">4πε<sub>0</sub></span>
+            </div>
+            · 
+            <div class="fraction">
+                <span>Q</span>
+                <span class="fdn">r</span>
+            </div>
+        </div>
+
+        <p><strong>Derivation of Relation Between E and V:</strong></p>
+        <div class="derivation-step">
+            <p>Work done dW in moving a charge q<sub>0</sub> through displacement d<b>r</b> in electric field <b>E</b> is dW = <b>F</b> · d<b>r</b> = q<sub>0</sub> <b>E</b> · d<b>r</b>.</p>
+            <p>The change in potential energy dU = -dW = -q<sub>0</sub> <b>E</b> · d<b>r</b>. Potential change dV = dU / q<sub>0</sub>:</p>
+            <div class="formula-box">
+                dV = -<b>E</b> · d<b>r</b> &nbsp;⇒&nbsp; E = -
+                <div class="fraction">
+                    <span>dV</span>
+                    <span class="fdn">dr</span>
+                </div>
+                &nbsp;&nbsp;or&nbsp;&nbsp; <b>E</b> = -∇V
+            </div>
+            <p>The negative sign indicates that <b>E</b> points in the direction of steepest potential drop.</p>
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Capacitance of a Parallel Plate Capacitor</div>
+        <p>A parallel plate capacitor consists of two conducting plates each of area A, separated by distance d.</p>
+        <div class="derivation-step">
+            <ol>
+                <li>When charges +Q and -Q are applied, surface charge density is σ = Q / A.</li>
+                <li>The electric field between two oppositely charged plates is uniform:
+                    <div class="formula-box">
+                        E = 
+                        <div class="fraction">
+                            <span>σ</span>
+                            <span class="fdn">ε<sub>0</sub></span>
+                        </div>
+                        = 
+                        <div class="fraction">
+                            <span>Q</span>
+                            <span class="fdn">ε<sub>0</sub> A</span>
+                        </div>
+                    </div>
+                </li>
+                <li>Potential difference between the plates V = E · d:
+                    <div class="formula-box">
+                        V = 
+                        <div class="fraction">
+                            <span>Q · d</span>
+                            <span class="fdn">ε<sub>0</sub> A</span>
+                        </div>
+                    </div>
+                </li>
+                <li>Using capacitance definition C = Q / V:
+                    <div class="formula-box">
+                        C = 
+                        <div class="fraction">
+                            <span>Q</span>
+                            <span class="fdn">(Q · d) / (ε<sub>0</sub> A)</span>
+                        </div>
+                        = 
+                        <div class="fraction">
+                            <span>ε<sub>0</sub> A</span>
+                            <span class="fdn">d</span>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Drift Velocity, Current Density, and Law of Resistance</div>
+        <p><strong>Drift Velocity (v<sub>d</sub>):</strong> Average velocity attained by free electrons in a conductor due to an applied electric field.</p>
+        <div class="formula-box">
+            Acceleration a = 
+            <div class="fraction">
+                <span>e E</span>
+                <span class="fdn">m</span>
+            </div>
+            &nbsp;⇒&nbsp; v<sub>d</sub> = a · τ = 
+            <div class="fraction">
+                <span>e E τ</span>
+                <span class="fdn">m</span>
+            </div>
+        </div>
+        <p>Where e is electron charge, m is mass, E is electric field, and τ is relaxation time between collisions.</p>
+
+        <p><strong>Current Density (J):</strong> Electric current per unit area perpendicular to flow.</p>
+        <div class="formula-box">
+            I = n A e v<sub>d</sub> &nbsp;⇒&nbsp; J = 
+            <div class="fraction">
+                <span>I</span>
+                <span class="fdn">A</span>
+            </div>
+            = n e v<sub>d</sub> = n e 
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>e E τ</span>
+                <span class="fdn">m</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span>
+            = 
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>n e<sup>2</sup> τ</span>
+                <span class="fdn">m</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span>
+            E = σ E
+        </div>
+
+        <p><strong>Law of Resistance & Microscopic Ohm's Law:</strong></p>
+        <div class="formula-box">
+            R = ρ 
+            <div class="fraction">
+                <span>L</span>
+                <span class="fdn">A</span>
+            </div>
+            &nbsp;&nbsp;where resistivity ρ = 
+            <div class="fraction">
+                <span>1</span>
+                <span class="fdn">σ</span>
+            </div>
+            = 
+            <div class="fraction">
+                <span>m</span>
+                <span class="fdn">n e<sup>2</sup> τ</span>
+            </div>
+        </div>
+        <ul>
+            <li>R ∝ L: Resistance increases with conductor length.</li>
+            <li>R ∝ 1/A: Resistance decreases with larger cross-sectional area.</li>
+            <li>R depends on material type (ρ) and temperature (affecting relaxation time τ).</li>
+        </ul>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Lenz's Law & Faraday's Induction</div>
+        <p><strong>Faraday's Law:</strong> Induced electromotive force (EMF) in a closed circuit equals the negative rate of change of magnetic flux through the circuit.</p>
+        <div class="formula-box">
+            Ɛ = -
+            <div class="fraction">
+                <span>dΦ<sub>B</sub></span>
+                <span class="fdn">dt</span>
+            </div>
+            &nbsp;&nbsp;where Φ<sub>B</sub> = ∫ <b>B</b> · d<b>A</b>
+        </div>
+        <p><strong>Lenz's Law (Sign Significance):</strong> The minus sign indicates that induced current flows in a direction such that its magnetic field opposes the change in magnetic flux that produced it (Conservation of Energy).</p>
+    </div>
+
+    <!-- SECTION 2 -->
+    <h2>2. Heat & Thermodynamics</h2>
+
+    <div class="topic-card">
+        <div class="topic-title">Mean Free Path (λ)</div>
+        <p>The average distance traveled by a gas molecule between successive collisions.</p>
+        <div class="formula-box">
+            λ = 
+            <div class="fraction">
+                <span>1</span>
+                <span class="fdn">√2 · π · d<sup>2</sup> · n</span>
+            </div>
+        </div>
+        <p>Where d is molecular diameter and n = N / V is molecular number density.</p>
+        <p><strong>Dependence on Temperature and Pressure:</strong> Using Ideal Gas Law (P = n k<sub>B</sub> T):</p>
+        <div class="formula-box">
+            λ = 
+            <div class="fraction">
+                <span>k<sub>B</sub> · T</span>
+                <span class="fdn">√2 · π · d<sup>2</sup> · P</span>
+            </div>
+        </div>
+        <ul>
+            <li>At constant pressure, mean free path increases linearly with Temperature (λ ∝ T).</li>
+            <li>At constant temperature, mean free path is inversely proportional to Pressure (λ ∝ 1/P).</li>
+        </ul>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">First Law of Thermodynamics</div>
+        <p>A statement of energy conservation applied to thermodynamic systems.</p>
+        <div class="formula-box">
+            dQ = dU + dW &nbsp;&nbsp;⇒&nbsp;&nbsp; dQ = dU + P dV
+        </div>
+        <ul>
+            <li>dQ: Heat transferred to the system (+ if absorbed, - if released).</li>
+            <li>dU: Change in internal energy (+ if temperature rises).</li>
+            <li>dW: Work done by the system (+ for expansion, - for compression).</li>
+        </ul>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Second Law of Thermodynamics (Classical Statements)</div>
+        <ul>
+            <li><strong>Kelvin-Planck Statement:</strong> No process is possible whose sole result is the absorption of heat from a single reservoir and its complete conversion into work (no 100% efficient heat engine).</li>
+            <li><strong>Clausius Statement:</strong> No process is possible whose sole result is the transfer of heat from a cooler body to a hotter body without external work input.</li>
+            <li><strong>Entropy Statement:</strong> In any irreversible spontaneous process, the total entropy of the universe always increases (ΔS<sub>univ</sub> > 0).</li>
+        </ul>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Reversible vs. Irreversible Processes</div>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Reversible Process</th>
+                        <th>Irreversible Process</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Definition</strong></td>
+                        <td>Can be reversed, returning system and surroundings to initial states.</td>
+                        <td>Cannot be completely reversed without changes to surroundings.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pace</strong></td>
+                        <td>Infinitely slow (Quasi-static).</td>
+                        <td>Spontaneous and finite speed.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Equilibrium</strong></td>
+                        <td>Remains in thermal/mechanical equilibrium throughout.</td>
+                        <td>Passes through non-equilibrium states.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dissipation</strong></td>
+                        <td>No dissipation (frictionless, no viscous losses).</td>
+                        <td>Involves dissipative forces (friction, resistance).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Entropy Change</strong></td>
+                        <td>ΔS<sub>universe</sub> = 0</td>
+                        <td>ΔS<sub>universe</sub> > 0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Isothermal & Adiabatic Processes</div>
+        <p><strong>Isothermal Process (ΔT = 0):</strong> System remains at constant temperature by exchanging heat with surroundings.</p>
+        <ul>
+            <li>Equation: P · V = Constant</li>
+            <li>Internal energy change: dU = 0 &nbsp;⇒&nbsp; dQ = dW</li>
+            <li>Work done: W<sub>iso</sub> = n · R · T · ln(V<sub>2</sub> / V<sub>1</sub>)</li>
+        </ul>
+
+        <p><strong>Adiabatic Process (dQ = 0):</strong> System is thermally insulated; no heat enters or leaves.</p>
+        <ul>
+            <li>Equation: P · V<sup>γ</sup> = Constant (where γ = C<sub>p</sub> / C<sub>v</sub>)</li>
+            <li>First Law relation: dU = -dW</li>
+            <li>Work done: W<sub>adia</sub> = 
+                <div class="fraction">
+                    <span>P<sub>1</sub>V<sub>1</sub> - P<sub>2</sub>V<sub>2</sub></span>
+                    <span class="fdn">γ - 1</span>
+                </div>
+                = 
+                <div class="fraction">
+                    <span>n R (T<sub>1</sub> - T<sub>2</sub>)</span>
+                    <span class="fdn">γ - 1</span>
+                </div>
+            </li>
+        </ul>
+
+        <p><strong>PV Diagram Comparison:</strong></p>
+        <div class="diagram-box">
+Pressure (P)
+  ^
+  |  *\  <-- Isothermal curve (Flatter slope: dP/dV = -P/V)
+  |    \*\
+  |      \*\  <-- Adiabatic curve (Steeper slope: dP/dV = -γ P/V)
+  |        \
+  +-------------------------> Volume (V)
+        </div>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Carnot Engine & Carnot's Theorem</div>
+        <p>The Carnot cycle is an ideal reversible cycle operating between hot source T<sub>H</sub> and cold sink T<sub>C</sub> consisting of 4 steps:</p>
+        <ol>
+            <li><strong>Reversible Isothermal Expansion</strong> at temperature T<sub>H</sub> (Absorbs Q<sub>H</sub>).</li>
+            <li><strong>Reversible Adiabatic Expansion</strong> (Temperature drops from T<sub>H</sub> to T<sub>C</sub>).</li>
+            <li><strong>Reversible Isothermal Compression</strong> at temperature T<sub>C</sub> (Rejects Q<sub>C</sub>).</li>
+            <li><strong>Reversible Adiabatic Compression</strong> (Temperature rises from T<sub>C</sub> to T<sub>H</sub>).</li>
+        </ol>
+
+        <div class="formula-box">
+            Thermal Efficiency: η = 
+            <div class="fraction">
+                <span>W</span>
+                <span class="fdn">Q<sub>H</sub></span>
+            </div>
+            = 
+            <div class="fraction">
+                <span>Q<sub>H</sub> - Q<sub>C</sub></span>
+                <span class="fdn">Q<sub>H</sub></span>
+            </div>
+            = 1 - 
+            <div class="fraction">
+                <span>Q<sub>C</sub></span>
+                <span class="fdn">Q<sub>H</sub></span>
+            </div>
+            = 1 - 
+            <div class="fraction">
+                <span>T<sub>C</sub></span>
+                <span class="fdn">T<sub>H</sub></span>
+            </div>
+        </div>
+
+        <p><strong>Carnot's Theorem:</strong></p>
+        <ol>
+            <li>No real engine operating between two heat reservoirs can be more efficient than a Carnot engine operating between the same reservoirs.</li>
+            <li>All reversible engines operating between the same two temperatures have identical efficiency regardless of working substance.</li>
+        </ol>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Entropy Concept (S)</div>
+        <p>Entropy is a state function measuring microscopic disorder or unavailable energy in a thermodynamic system.</p>
+        <div class="formula-box">
+            dS = 
+            <div class="fraction">
+                <span>dQ<sub>rev</sub></span>
+                <span class="fdn">T</span>
+            </div>
+        </div>
+        <p>For a complete reversible cycle: ∮ (dQ<sub>rev</sub> / T) = 0. For an irreversible cycle (Clausius Inequality): ∮ (dQ / T) < 0.</p>
+    </div>
+
+    <div class="topic-card">
+        <div class="topic-title">Maxwell's Thermodynamic Relations</div>
+        <p>Derived by applying Euler's reciprocity condition to fundamental thermodynamic equations.</p>
+
+        <p><strong>1. Internal Energy (U):</strong> dU = T dS - P dV</p>
+        <div class="formula-box">
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂T</span>
+                <span class="fdn">∂V</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>S</sub>
+            = -
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂P</span>
+                <span class="fdn">∂S</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>V</sub>
+        </div>
+
+        <p><strong>2. Enthalpy (H = U + PV):</strong> dH = T dS + V dP</p>
+        <div class="formula-box">
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂T</span>
+                <span class="fdn">∂P</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>S</sub>
+            = 
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂V</span>
+                <span class="fdn">∂S</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>P</sub>
+        </div>
+
+        <p><strong>3. Helmholtz Free Energy (F = U - TS):</strong> dF = -S dT - P dV</p>
+        <div class="formula-box">
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂S</span>
+                <span class="fdn">∂V</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>T</sub>
+            = 
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂P</span>
+                <span class="fdn">∂T</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>V</sub>
+        </div>
+
+        <p><strong>4. Gibbs Free Energy (G = H - TS):</strong> dG = -S dT + V dP</p>
+        <div class="formula-box">
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂S</span>
+                <span class="fdn">∂P</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>T</sub>
+            = -
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction">
+                <span>∂V</span>
+                <span class="fdn">∂T</span>
+            </div>
+            <span style="font-size:1.2rem;">)</span><sub>P</sub>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
