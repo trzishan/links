@@ -4,7 +4,8 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './style.css',
-  './all-physics-theory.html'
+  './all-physics-theory.html',
+  './physics-math-questions.html'
 ];
 
 // Install Event
