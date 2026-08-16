@@ -13,6 +13,8 @@
             --secondary-color: #495057;
             --accent-bg: #e7f1ff;
             --border-color: #dee2e6;
+            --note-bg: #fff3cd;
+            --note-border: #ffecb5;
         }
 
         * {
@@ -83,6 +85,15 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        .note-box {
+            background-color: var(--note-bg);
+            border: 1px solid var(--note-border);
+            border-radius: 6px;
+            padding: 12px 15px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+
         .derivation-step {
             background-color: #fafafa;
             border: 1px solid #e9ecef;
@@ -113,7 +124,7 @@
         table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 520px;
+            min-width: 540px;
         }
 
         table, th, td {
@@ -193,7 +204,7 @@
 
     <div class="topic-card">
         <div class="topic-title">Gauss's Law & Coulomb's Law Derivation</div>
-        <p><strong>Gauss's Law Statement:</strong> The total electric flux Φ<sub>E</sub> through any closed Gaussian surface is equal to the net enclosed electric charge Q<sub>enc</sub> divided by the permittivity of free space ε<sub>0</sub>.</p>
+        <p><strong>Gauss's Law Statement:</strong> The net electric flux Φ<sub>E</sub> passing through any imaginary closed surface (Gaussian surface) is equal to the total net enclosed electric charge Q<sub>enc</sub> divided by the vacuum permittivity ε<sub>0</sub>.</p>
         <div class="formula-box">
             Φ<sub>E</sub> = ∮ <b>E</b> · d<b>A</b> = 
             <div class="fraction">
@@ -205,22 +216,22 @@
         <p><strong>Step-by-Step Derivation of Coulomb's Law from Gauss's Law:</strong></p>
         <div class="derivation-step">
             <ol>
-                <li>Consider a point charge +q located in free space. Imagine a spherical Gaussian surface of radius r centered on charge q.</li>
-                <li>By spherical symmetry, the magnitude of the electric field <b>E</b> is identical at all points on the surface, pointing radially outward everywhere.</li>
-                <li>Therefore, the angle θ between <b>E</b> and the area vector d<b>A</b> is 0° (cos 0° = 1).</li>
-                <li>Evaluate the surface integral:
+                <li>Consider an isolated stationary point charge +q in vacuum. Enclose it within a concentric spherical Gaussian surface of radius r.</li>
+                <li>Due to spherical symmetry, the electric field vector <b>E</b> has uniform magnitude at all surface points and points radially outwards.</li>
+                <li>The normal area vector d<b>A</b> also points radially outward. Thus, the angle θ between <b>E</b> and d<b>A</b> is 0° (cos 0° = 1).</li>
+                <li>Evaluate the closed surface integral:
                     <div class="formula-box">
-                        ∮ <b>E</b> · d<b>A</b> = ∮ E dA = E ∮ dA
+                        ∮ <b>E</b> · d<b>A</b> = ∮ E · dA · cos(0°) = E ∮ dA
                     </div>
                 </li>
-                <li>Since the total area of a sphere of radius r is A = 4πr<sup>2</sup>:
+                <li>Substitute the total surface area of the sphere, A = 4πr<sup>2</sup>:
                     <div class="formula-box">
-                        E (4πr<sup>2</sup>) = 
+                        E · (4πr<sup>2</sup>) = 
                         <div class="fraction">
                             <span>q</span>
                             <span class="fdn">ε<sub>0</sub></span>
                         </div>
-                        &nbsp;⇒&nbsp; E = 
+                        &nbsp;&nbsp;⇒&nbsp;&nbsp; E = 
                         <div class="fraction">
                             <span>1</span>
                             <span class="fdn">4πε<sub>0</sub></span>
@@ -232,7 +243,7 @@
                         </div>
                     </div>
                 </li>
-                <li>Placing a test charge q<sub>0</sub> at distance r, the electrostatic force experienced is F = q<sub>0</sub>E:
+                <li>Place a secondary test charge q<sub>0</sub> at distance r. The electric force F experienced by q<sub>0</sub> is defined by F = q<sub>0</sub>E:
                     <div class="formula-box">
                         F = 
                         <div class="fraction">
@@ -247,15 +258,20 @@
                     </div>
                 </li>
             </ol>
-            <p>This explicitly derives <strong>Coulomb's Law</strong>.</p>
+            <p>This yields <strong>Coulomb's Inverse-Square Law</strong>.</p>
         </div>
     </div>
 
     <div class="topic-card">
-        <div class="topic-title">Electric Field (E), Potential (V), and Their Relation</div>
-        <p><strong>Electric Field Intensity (E):</strong> Force per unit charge exerted on a positive test charge placed at a point in space. It is a vector quantity (N/C or V/m).</p>
+        <div class="topic-title">Electric Field Intensity (E), Electric Potential (V), and Relation</div>
+        <p><strong>Electric Field Intensity (E):</strong> A vector quantity defined as the force per unit positive test charge placed at a specific point in space.</p>
         <div class="formula-box">
-            E = 
+            <b>E</b> = 
+            <div class="fraction">
+                <span><b>F</b></span>
+                <span class="fdn">q<sub>0</sub></span>
+            </div>
+            = 
             <div class="fraction">
                 <span>1</span>
                 <span class="fdn">4πε<sub>0</sub></span>
@@ -265,11 +281,12 @@
                 <span>Q</span>
                 <span class="fdn">r<sup>2</sup></span>
             </div>
+            &nbsp;r̂ &nbsp;&nbsp;(SI units: N/C or V/m)
         </div>
 
-        <p><strong>Electric Potential (V):</strong> Work done in bringing a unit positive test charge from infinity to a specific point against electrostatic forces. It is a scalar quantity (Volts).</p>
+        <p><strong>Electric Potential (V):</strong> A scalar quantity representing the external work required to bring a unit positive charge from infinity to a point without acceleration.</p>
         <div class="formula-box">
-            V = 
+            V = - ∫<sub>∞</sub><sup>r</sup> <b>E</b> · d<b>r</b> = 
             <div class="fraction">
                 <span>1</span>
                 <span class="fdn">4πε<sub>0</sub></span>
@@ -279,61 +296,43 @@
                 <span>Q</span>
                 <span class="fdn">r</span>
             </div>
+            &nbsp;&nbsp;(SI unit: Volts = J/C)
         </div>
 
-        <p><strong>Derivation of Relation Between E and V:</strong></p>
+        <p><strong>Mathematical Relation (E = -dV/dr):</strong></p>
         <div class="derivation-step">
-            <p>Work done dW in moving a charge q<sub>0</sub> through displacement d<b>r</b> in electric field <b>E</b> is dW = <b>F</b> · d<b>r</b> = q<sub>0</sub> <b>E</b> · d<b>r</b>.</p>
-            <p>The change in potential energy dU = -dW = -q<sub>0</sub> <b>E</b> · d<b>r</b>. Potential change dV = dU / q<sub>0</sub>:</p>
+            <p>Work done dW to move charge q<sub>0</sub> through displacement d<b>r</b> in field <b>E</b> is dW = q<sub>0</sub> <b>E</b> · d<b>r</b>.</p>
+            <p>The potential energy change dU = -dW = -q<sub>0</sub> <b>E</b> · d<b>r</b>. Dividing by q<sub>0</sub> gives potential change dV:</p>
             <div class="formula-box">
-                dV = -<b>E</b> · d<b>r</b> &nbsp;⇒&nbsp; E = -
+                dV = -<b>E</b> · d<b>r</b> &nbsp;&nbsp;⇒&nbsp;&nbsp; E = -
                 <div class="fraction">
                     <span>dV</span>
                     <span class="fdn">dr</span>
                 </div>
-                &nbsp;&nbsp;or&nbsp;&nbsp; <b>E</b> = -∇V
+                &nbsp;&nbsp;or in 3D:&nbsp;&nbsp; <b>E</b> = -∇V = -
+                <span style="font-size:1.2rem;">(</span>
+                <div class="fraction"><span>∂V</span><span class="fdn">∂x</span></div>î + 
+                <div class="fraction"><span>∂V</span><span class="fdn">∂y</span></div>ĵ + 
+                <div class="fraction"><span>∂V</span><span class="fdn">∂z</span></div>k̂
+                <span style="font-size:1.2rem;">)</span>
             </div>
-            <p>The negative sign indicates that <b>E</b> points in the direction of steepest potential drop.</p>
+            <div class="note-box">
+                <strong>Physical Significance:</strong> The negative sign demonstrates that the electric field vector always points in the direction of maximum rate of potential decrease. Equipotential surfaces are always perpendicular to field lines.
+            </div>
         </div>
     </div>
 
     <div class="topic-card">
         <div class="topic-title">Capacitance of a Parallel Plate Capacitor</div>
-        <p>A parallel plate capacitor consists of two conducting plates each of area A, separated by distance d.</p>
+        <p>A parallel plate capacitor consists of two parallel conducting plates of area A separated by a small gap d.</p>
         <div class="derivation-step">
             <ol>
-                <li>When charges +Q and -Q are applied, surface charge density is σ = Q / A.</li>
-                <li>The electric field between two oppositely charged plates is uniform:
-                    <div class="formula-box">
-                        E = 
-                        <div class="fraction">
-                            <span>σ</span>
-                            <span class="fdn">ε<sub>0</sub></span>
-                        </div>
-                        = 
-                        <div class="fraction">
-                            <span>Q</span>
-                            <span class="fdn">ε<sub>0</sub> A</span>
-                        </div>
-                    </div>
-                </li>
-                <li>Potential difference between the plates V = E · d:
-                    <div class="formula-box">
-                        V = 
-                        <div class="fraction">
-                            <span>Q · d</span>
-                            <span class="fdn">ε<sub>0</sub> A</span>
-                        </div>
-                    </div>
-                </li>
-                <li>Using capacitance definition C = Q / V:
+                <li>Charges +Q and -Q create uniform surface charge density σ = Q / A.</li>
+                <li>Between the plates, electric field contributions add up: E = σ / ε<sub>0</sub> = Q / (ε<sub>0</sub> A).</li>
+                <li>Potential difference across gap d is V = E · d = (Q · d) / (ε<sub>0</sub> A).</li>
+                <li>Capacitance C = Q / V:
                     <div class="formula-box">
                         C = 
-                        <div class="fraction">
-                            <span>Q</span>
-                            <span class="fdn">(Q · d) / (ε<sub>0</sub> A)</span>
-                        </div>
-                        = 
                         <div class="fraction">
                             <span>ε<sub>0</sub> A</span>
                             <span class="fdn">d</span>
@@ -341,87 +340,66 @@
                     </div>
                 </li>
             </ol>
+            <p><strong>With Dielectric Material:</strong> Inserting a medium of dielectric constant κ (or relative permittivity ε<sub>r</sub>) increases storage capacity:</p>
+            <div class="formula-box">
+                C<sub>medium</sub> = κ · C<sub>vacuum</sub> = 
+                <div class="fraction">
+                    <span>κ · ε<sub>0</sub> · A</span>
+                    <span class="fdn">d</span>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="topic-card">
-        <div class="topic-title">Drift Velocity, Current Density, and Law of Resistance</div>
-        <p><strong>Drift Velocity (v<sub>d</sub>):</strong> Average velocity attained by free electrons in a conductor due to an applied electric field.</p>
+        <div class="topic-title">Drift Velocity, Current Density, & Laws of Resistance</div>
+        <p><strong>Drift Velocity (v<sub>d</sub>):</strong> The slow net velocity acquired by free conduction electrons under an external electric field.</p>
         <div class="formula-box">
-            Acceleration a = 
-            <div class="fraction">
-                <span>e E</span>
-                <span class="fdn">m</span>
-            </div>
-            &nbsp;⇒&nbsp; v<sub>d</sub> = a · τ = 
-            <div class="fraction">
-                <span>e E τ</span>
-                <span class="fdn">m</span>
-            </div>
+            Electric Force F = eE &nbsp;⇒&nbsp; Acceleration a = 
+            <div class="fraction"><span>eE</span><span class="fdn">m</span></div>
+            &nbsp;&nbsp;⇒&nbsp;&nbsp; v<sub>d</sub> = a · τ = 
+            <div class="fraction"><span>e E τ</span><span class="fdn">m</span></div>
         </div>
-        <p>Where e is electron charge, m is mass, E is electric field, and τ is relaxation time between collisions.</p>
+        <p>Where e is electron charge, m is electron mass, E is electric field strength, and τ is mean relaxation time between atomic collisions.</p>
 
-        <p><strong>Current Density (J):</strong> Electric current per unit area perpendicular to flow.</p>
+        <p><strong>Current Density (J) & Microscopic Ohm's Law:</strong></p>
         <div class="formula-box">
-            I = n A e v<sub>d</sub> &nbsp;⇒&nbsp; J = 
-            <div class="fraction">
-                <span>I</span>
-                <span class="fdn">A</span>
-            </div>
-            = n e v<sub>d</sub> = n e 
+            Current I = n · A · e · v<sub>d</sub> &nbsp;&nbsp;⇒&nbsp;&nbsp; J = 
+            <div class="fraction"><span>I</span><span class="fdn">A</span></div>
+            = n · e · v<sub>d</sub> = 
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>e E τ</span>
-                <span class="fdn">m</span>
-            </div>
+            <div class="fraction"><span>n e<sup>2</sup> τ</span><span class="fdn">m</span></div>
             <span style="font-size:1.2rem;">)</span>
-            = 
-            <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>n e<sup>2</sup> τ</span>
-                <span class="fdn">m</span>
-            </div>
-            <span style="font-size:1.2rem;">)</span>
-            E = σ E
+            E = σ · E
         </div>
+        <p>Where n is free electron density, and electrical conductivity σ = (n e<sup>2</sup> τ) / m.</p>
 
-        <p><strong>Law of Resistance & Microscopic Ohm's Law:</strong></p>
+        <p><strong>Macroscopic Law of Resistance:</strong></p>
         <div class="formula-box">
             R = ρ 
-            <div class="fraction">
-                <span>L</span>
-                <span class="fdn">A</span>
-            </div>
+            <div class="fraction"><span>L</span><span class="fdn">A</span></div>
             &nbsp;&nbsp;where resistivity ρ = 
-            <div class="fraction">
-                <span>1</span>
-                <span class="fdn">σ</span>
-            </div>
+            <div class="fraction"><span>1</span><span class="fdn">σ</span></div>
             = 
-            <div class="fraction">
-                <span>m</span>
-                <span class="fdn">n e<sup>2</sup> τ</span>
-            </div>
+            <div class="fraction"><span>m</span><span class="fdn">n e<sup>2</sup> τ</span></div>
         </div>
-        <ul>
-            <li>R ∝ L: Resistance increases with conductor length.</li>
-            <li>R ∝ 1/A: Resistance decreases with larger cross-sectional area.</li>
-            <li>R depends on material type (ρ) and temperature (affecting relaxation time τ).</li>
-        </ul>
+        <div class="note-box">
+            <strong>Temperature Effect:</strong> As temperature rises, lattice vibrations increase, causing more frequent collisions (τ decreases). Therefore, resistivity ρ increases for conductors: ρ(T) = ρ<sub>0</sub>[1 + α(T - T<sub>0</sub>)].
+        </div>
     </div>
 
     <div class="topic-card">
-        <div class="topic-title">Lenz's Law & Faraday's Induction</div>
-        <p><strong>Faraday's Law:</strong> Induced electromotive force (EMF) in a closed circuit equals the negative rate of change of magnetic flux through the circuit.</p>
+        <div class="topic-title">Lenz's Law & Electromagnetic Induction</div>
+        <p><strong>Faraday's Law of Induction:</strong> Any change in magnetic flux through a closed conductive loop induces an electromotive force (EMF).</p>
         <div class="formula-box">
-            Ɛ = -
-            <div class="fraction">
-                <span>dΦ<sub>B</sub></span>
-                <span class="fdn">dt</span>
-            </div>
-            &nbsp;&nbsp;where Φ<sub>B</sub> = ∫ <b>B</b> · d<b>A</b>
+            Ɛ = - 
+            <div class="fraction"><span>dΦ<sub>B</sub></span><span class="fdn">dt</span></div>
+            &nbsp;&nbsp;where Magnetic Flux Φ<sub>B</sub> = ∬ <b>B</b> · d<b>A</b> = B · A · cos(θ)
         </div>
-        <p><strong>Lenz's Law (Sign Significance):</strong> The minus sign indicates that induced current flows in a direction such that its magnetic field opposes the change in magnetic flux that produced it (Conservation of Energy).</p>
+        <p><strong>Lenz's Law Statement:</strong> The direction of an induced current is always such that its magnetic field opposes the original change in magnetic flux that induced it.</p>
+        <div class="note-box">
+            <strong>Energy Conservation Proof:</strong> If induced current reinforced the flux change instead of opposing it, continuous mechanical work could be extracted without input energy, violating energy conservation. The negative sign ensures mechanical work spent overcoming magnetic repulsion converts directly into electrical energy.
+        </div>
     </div>
 
     <!-- SECTION 2 -->
@@ -429,7 +407,7 @@
 
     <div class="topic-card">
         <div class="topic-title">Mean Free Path (λ)</div>
-        <p>The average distance traveled by a gas molecule between successive collisions.</p>
+        <p>The average distance traveled by a gas molecule between successive collisions with other gas molecules.</p>
         <div class="formula-box">
             λ = 
             <div class="fraction">
@@ -437,8 +415,9 @@
                 <span class="fdn">√2 · π · d<sup>2</sup> · n</span>
             </div>
         </div>
-        <p>Where d is molecular diameter and n = N / V is molecular number density.</p>
-        <p><strong>Dependence on Temperature and Pressure:</strong> Using Ideal Gas Law (P = n k<sub>B</sub> T):</p>
+        <p>Where d is molecular collision diameter and n = N / V is number of molecules per unit volume.</p>
+        
+        <p><strong>Dependence on Temperature and Pressure:</strong> Substituting n = P / (k<sub>B</sub> T) from the ideal gas law:</p>
         <div class="formula-box">
             λ = 
             <div class="fraction">
@@ -447,30 +426,38 @@
             </div>
         </div>
         <ul>
-            <li>At constant pressure, mean free path increases linearly with Temperature (λ ∝ T).</li>
-            <li>At constant temperature, mean free path is inversely proportional to Pressure (λ ∝ 1/P).</li>
+            <li>At constant pressure P, mean free path increases linearly with absolute temperature T (λ ∝ T).</li>
+            <li>At constant temperature T, mean free path is inversely proportional to pressure P (λ ∝ 1/P).</li>
         </ul>
     </div>
 
     <div class="topic-card">
-        <div class="topic-title">First Law of Thermodynamics</div>
-        <p>A statement of energy conservation applied to thermodynamic systems.</p>
+        <div class="topic-title">First Law of Thermodynamics & Specific Processes</div>
+        <p>A statement of energy conservation stating that net heat supplied to a system equals internal energy change plus work done.</p>
         <div class="formula-box">
             dQ = dU + dW &nbsp;&nbsp;⇒&nbsp;&nbsp; dQ = dU + P dV
         </div>
+        <p><strong>Application to Specific Processes:</strong></p>
         <ul>
-            <li>dQ: Heat transferred to the system (+ if absorbed, - if released).</li>
-            <li>dU: Change in internal energy (+ if temperature rises).</li>
-            <li>dW: Work done by the system (+ for expansion, - for compression).</li>
+            <li><strong>Isochoric Process (Constant Volume, dV = 0):</strong> dW = 0 &nbsp;⇒&nbsp; dQ = dU = n C<sub>v</sub> dT</li>
+            <li><strong>Isobaric Process (Constant Pressure, dP = 0):</strong> dQ = n C<sub>p</sub> dT, &nbsp;dW = P(V<sub>2</sub> - V<sub>1</sub>)</li>
+            <li><strong>Isothermal Process (Constant Temp, dT = 0):</strong> dU = 0 &nbsp;⇒&nbsp; dQ = dW</li>
+            <li><strong>Adiabatic Process (Insulated, dQ = 0):</strong> dU = -dW</li>
         </ul>
     </div>
 
     <div class="topic-card">
-        <div class="topic-title">Second Law of Thermodynamics (Classical Statements)</div>
+        <div class="topic-title">Second Law of Thermodynamics (Equivalences)</div>
         <ul>
-            <li><strong>Kelvin-Planck Statement:</strong> No process is possible whose sole result is the absorption of heat from a single reservoir and its complete conversion into work (no 100% efficient heat engine).</li>
-            <li><strong>Clausius Statement:</strong> No process is possible whose sole result is the transfer of heat from a cooler body to a hotter body without external work input.</li>
-            <li><strong>Entropy Statement:</strong> In any irreversible spontaneous process, the total entropy of the universe always increases (ΔS<sub>univ</sub> > 0).</li>
+            <li><strong>Kelvin-Planck Statement:</strong> It is impossible for any device operating on a cycle to receive heat from a single thermal reservoir and produce a net amount of work (100% efficient heat engine is impossible).</li>
+            <li><strong>Clausius Statement:</strong> It is impossible to construct a cyclic device that operates such that heat is transferred from a low-temperature body to a high-temperature body without external work input (spontaneous heat flow is strictly unidirectional from hot to cold).</li>
+            <li><strong>Clausius Inequality:</strong> For any arbitrary thermodynamic cycle:
+                <div class="formula-box">
+                    ∮ 
+                    <div class="fraction"><span>dQ</span><span class="fdn">T</span></div>
+                    ≤ 0 &nbsp;&nbsp;(Equal to 0 for reversible cycles, strictly less than 0 for irreversible cycles)
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -487,29 +474,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>Definition</strong></td>
-                        <td>Can be reversed, returning system and surroundings to initial states.</td>
-                        <td>Cannot be completely reversed without changes to surroundings.</td>
+                        <td><strong>Directionality</strong></td>
+                        <td>Can retrace exact initial path with zero net environmental change.</td>
+                        <td>Cannot be reversed without leaving net changes in surroundings.</td>
                     </tr>
                     <tr>
-                        <td><strong>Pace</strong></td>
-                        <td>Infinitely slow (Quasi-static).</td>
-                        <td>Spontaneous and finite speed.</td>
+                        <td><strong>Driving Force</strong></td>
+                        <td>Infinitesimal gradient (Quasi-static process).</td>
+                        <td>Finite imbalance / non-equilibrium gradient.</td>
                     </tr>
                     <tr>
-                        <td><strong>Equilibrium</strong></td>
-                        <td>Remains in thermal/mechanical equilibrium throughout.</td>
-                        <td>Passes through non-equilibrium states.</td>
+                        <td><strong>Dissipative Effects</strong></td>
+                        <td>Completely absent (Frictionless, zero electrical resistance).</td>
+                        <td>Present (Friction, viscosity, turbulence, electrical resistance).</td>
                     </tr>
                     <tr>
-                        <td><strong>Dissipation</strong></td>
-                        <td>No dissipation (frictionless, no viscous losses).</td>
-                        <td>Involves dissipative forces (friction, resistance).</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Entropy Change</strong></td>
-                        <td>ΔS<sub>universe</sub> = 0</td>
-                        <td>ΔS<sub>universe</sub> > 0</td>
+                        <td><strong>Universe Entropy</strong></td>
+                        <td>ΔS<sub>universe</sub> = ΔS<sub>system</sub> + ΔS<sub>surroundings</sub> = 0</td>
+                        <td>ΔS<sub>universe</sub> = ΔS<sub>gen</sub> > 0</td>
                     </tr>
                 </tbody>
             </table>
@@ -518,37 +500,42 @@
 
     <div class="topic-card">
         <div class="topic-title">Isothermal & Adiabatic Processes</div>
-        <p><strong>Isothermal Process (ΔT = 0):</strong> System remains at constant temperature by exchanging heat with surroundings.</p>
-        <ul>
-            <li>Equation: P · V = Constant</li>
-            <li>Internal energy change: dU = 0 &nbsp;⇒&nbsp; dQ = dW</li>
-            <li>Work done: W<sub>iso</sub> = n · R · T · ln(V<sub>2</sub> / V<sub>1</sub>)</li>
-        </ul>
+        <p><strong>Isothermal Process (Constant T):</strong> Heat transfer is slow enough that system stays in thermal equilibrium with reservoir.</p>
+        <div class="formula-box">
+            P · V = Constant &nbsp;&nbsp;⇒&nbsp;&nbsp; Work Done W<sub>iso</sub> = n R T ln
+            <span style="font-size:1.2rem;">(</span>
+            <div class="fraction"><span>V<sub>2</sub></span><span class="fdn">V<sub>1</sub></span></div>
+            <span style="font-size:1.2rem;">)</span>
+        </div>
 
-        <p><strong>Adiabatic Process (dQ = 0):</strong> System is thermally insulated; no heat enters or leaves.</p>
-        <ul>
-            <li>Equation: P · V<sup>γ</sup> = Constant (where γ = C<sub>p</sub> / C<sub>v</sub>)</li>
-            <li>First Law relation: dU = -dW</li>
-            <li>Work done: W<sub>adia</sub> = 
-                <div class="fraction">
-                    <span>P<sub>1</sub>V<sub>1</sub> - P<sub>2</sub>V<sub>2</sub></span>
-                    <span class="fdn">γ - 1</span>
-                </div>
-                = 
-                <div class="fraction">
-                    <span>n R (T<sub>1</sub> - T<sub>2</sub>)</span>
-                    <span class="fdn">γ - 1</span>
-                </div>
-            </li>
-        </ul>
+        <p><strong>Adiabatic Process (dQ = 0):</strong> Process occurs so rapidly or in an insulated system that heat transfer is zero.</p>
+        <div class="formula-box">
+            P · V<sup>γ</sup> = Constant &nbsp;&nbsp;⇒&nbsp;&nbsp; Work Done W<sub>adia</sub> = 
+            <div class="fraction">
+                <span>P<sub>1</sub>V<sub>1</sub> - P<sub>2</sub>V<sub>2</sub></span>
+                <span class="fdn">γ - 1</span>
+            </div>
+            = 
+            <div class="fraction">
+                <span>n R (T<sub>1</sub> - T<sub>2</sub>)</span>
+                <span class="fdn">γ - 1</span>
+            </div>
+        </div>
+        <p>Where adiabatic index γ = C<sub>p</sub> / C<sub>v</sub> > 1.</p>
 
-        <p><strong>PV Diagram Comparison:</strong></p>
+        <p><strong>Mathematical Proof of Slopes:</strong></p>
+        <div class="derivation-step">
+            <p>Isothermal slope: dP/dV = -P / V</p>
+            <p>Adiabatic slope: dP/dV = -γ · (P / V)</p>
+            <p>Since γ > 1, the slope of an adiabatic curve on a P-V diagram is steeper by a factor of γ than an isothermal curve at the same point.</p>
+        </div>
+
         <div class="diagram-box">
 Pressure (P)
   ^
-  |  *\  <-- Isothermal curve (Flatter slope: dP/dV = -P/V)
+  |  *\  <-- Isothermal curve (Flatter: dP/dV = -P/V)
   |    \*\
-  |      \*\  <-- Adiabatic curve (Steeper slope: dP/dV = -γ P/V)
+  |      \*\  <-- Adiabatic curve (Steeper: dP/dV = -γ P/V)
   |        \
   +-------------------------> Volume (V)
         </div>
@@ -556,126 +543,93 @@ Pressure (P)
 
     <div class="topic-card">
         <div class="topic-title">Carnot Engine & Carnot's Theorem</div>
-        <p>The Carnot cycle is an ideal reversible cycle operating between hot source T<sub>H</sub> and cold sink T<sub>C</sub> consisting of 4 steps:</p>
+        <p>The Carnot Engine is a theoretical reversible heat engine operating between hot reservoir T<sub>H</sub> and cold reservoir T<sub>C</sub> in four steps:</p>
         <ol>
-            <li><strong>Reversible Isothermal Expansion</strong> at temperature T<sub>H</sub> (Absorbs Q<sub>H</sub>).</li>
-            <li><strong>Reversible Adiabatic Expansion</strong> (Temperature drops from T<sub>H</sub> to T<sub>C</sub>).</li>
-            <li><strong>Reversible Isothermal Compression</strong> at temperature T<sub>C</sub> (Rejects Q<sub>C</sub>).</li>
-            <li><strong>Reversible Adiabatic Compression</strong> (Temperature rises from T<sub>C</sub> to T<sub>H</sub>).</li>
+            <li><strong>Reversible Isothermal Expansion (1 → 2):</strong> System absorbs heat Q<sub>H</sub> at temperature T<sub>H</sub>.</li>
+            <li><strong>Reversible Adiabatic Expansion (2 → 3):</strong> Working fluid cools from T<sub>H</sub> to T<sub>C</sub> doing mechanical work.</li>
+            <li><strong>Reversible Isothermal Compression (3 → 4):</strong> System rejects heat Q<sub>C</sub> at temperature T<sub>C</sub>.</li>
+            <li><strong>Reversible Adiabatic Compression (4 → 1):</strong> Fluid compresses, raising temperature back from T<sub>C</sub> to T<sub>H</sub>.</li>
         </ol>
 
         <div class="formula-box">
-            Thermal Efficiency: η = 
-            <div class="fraction">
-                <span>W</span>
-                <span class="fdn">Q<sub>H</sub></span>
-            </div>
+            Efficiency η = 
+            <div class="fraction"><span>Work Output (W)</span><span class="fdn">Heat Input (Q<sub>H</sub>)</span></div>
             = 
-            <div class="fraction">
-                <span>Q<sub>H</sub> - Q<sub>C</sub></span>
-                <span class="fdn">Q<sub>H</sub></span>
-            </div>
+            <div class="fraction"><span>Q<sub>H</sub> - Q<sub>C</sub></span><span class="fdn">Q<sub>H</sub></span></div>
             = 1 - 
-            <div class="fraction">
-                <span>Q<sub>C</sub></span>
-                <span class="fdn">Q<sub>H</sub></span>
-            </div>
+            <div class="fraction"><span>Q<sub>C</sub></span><span class="fdn">Q<sub>H</sub></span></div>
             = 1 - 
-            <div class="fraction">
-                <span>T<sub>C</sub></span>
-                <span class="fdn">T<sub>H</sub></span>
-            </div>
+            <div class="fraction"><span>T<sub>C</sub></span><span class="fdn">T<sub>H</sub></span></div>
         </div>
 
-        <p><strong>Carnot's Theorem:</strong></p>
-        <ol>
-            <li>No real engine operating between two heat reservoirs can be more efficient than a Carnot engine operating between the same reservoirs.</li>
-            <li>All reversible engines operating between the same two temperatures have identical efficiency regardless of working substance.</li>
-        </ol>
+        <p><strong>Carnot's Theorem:</strong> No real engine operating between two given temperatures can be more efficient than a Carnot engine operating between the exact same temperatures.</p>
     </div>
 
     <div class="topic-card">
         <div class="topic-title">Entropy Concept (S)</div>
-        <p>Entropy is a state function measuring microscopic disorder or unavailable energy in a thermodynamic system.</p>
+        <p>Entropy is a thermodynamic state function measuring macroscopic energy degradation and microscopic disorder.</p>
         <div class="formula-box">
-            dS = 
-            <div class="fraction">
-                <span>dQ<sub>rev</sub></span>
-                <span class="fdn">T</span>
-            </div>
+            Differential Definition: dS = 
+            <div class="fraction"><span>dQ<sub>rev</sub></span><span class="fdn">T</span></div>
+            &nbsp;&nbsp;⇒&nbsp;&nbsp; ΔS = ∫<sub>1</sub><sup>2</sup> 
+            <div class="fraction"><span>dQ<sub>rev</sub></span><span class="fdn">T</span></div>
         </div>
-        <p>For a complete reversible cycle: ∮ (dQ<sub>rev</sub> / T) = 0. For an irreversible cycle (Clausius Inequality): ∮ (dQ / T) < 0.</p>
+        <div class="note-box">
+            <strong>Statistical Thermodynamics (Boltzmann Relation):</strong> Entropy is directly related to microstates (W): 
+            <div class="formula-box" style="margin: 5px 0 0 0;">
+                S = k<sub>B</sub> · ln(W)
+            </div>
+            Where k<sub>B</sub> is Boltzmann's constant and W is the number of accessible microscopic configurations.
+        </div>
     </div>
 
     <div class="topic-card">
         <div class="topic-title">Maxwell's Thermodynamic Relations</div>
-        <p>Derived by applying Euler's reciprocity condition to fundamental thermodynamic equations.</p>
+        <p>Derived by applying Euler's reciprocity relations to exact differentials of thermodynamic potentials (Internal energy U, Enthalpy H, Helmholtz free energy F, Gibbs free energy G).</p>
 
-        <p><strong>1. Internal Energy (U):</strong> dU = T dS - P dV</p>
+        <p><strong>Derivation Principle:</strong> For an exact differential df = M dx + N dy, Euler's condition states (∂M / ∂y)<sub>x</sub> = (∂N / ∂x)<sub>y</sub>.</p>
+
+        <p><strong>1. From Internal Energy (dU = T dS - P dV):</strong></p>
         <div class="formula-box">
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂T</span>
-                <span class="fdn">∂V</span>
-            </div>
+            <div class="fraction"><span>∂T</span><span class="fdn">∂V</span></div>
             <span style="font-size:1.2rem;">)</span><sub>S</sub>
             = -
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂P</span>
-                <span class="fdn">∂S</span>
-            </div>
+            <div class="fraction"><span>∂P</span><span class="fdn">∂S</span></div>
             <span style="font-size:1.2rem;">)</span><sub>V</sub>
         </div>
 
-        <p><strong>2. Enthalpy (H = U + PV):</strong> dH = T dS + V dP</p>
+        <p><strong>2. From Enthalpy (dH = T dS + V dP):</strong></p>
         <div class="formula-box">
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂T</span>
-                <span class="fdn">∂P</span>
-            </div>
+            <div class="fraction"><span>∂T</span><span class="fdn">∂P</span></div>
             <span style="font-size:1.2rem;">)</span><sub>S</sub>
             = 
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂V</span>
-                <span class="fdn">∂S</span>
-            </div>
+            <div class="fraction"><span>∂V</span><span class="fdn">∂S</span></div>
             <span style="font-size:1.2rem;">)</span><sub>P</sub>
         </div>
 
-        <p><strong>3. Helmholtz Free Energy (F = U - TS):</strong> dF = -S dT - P dV</p>
+        <p><strong>3. From Helmholtz Free Energy (dF = -S dT - P dV):</strong></p>
         <div class="formula-box">
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂S</span>
-                <span class="fdn">∂V</span>
-            </div>
+            <div class="fraction"><span>∂S</span><span class="fdn">∂V</span></div>
             <span style="font-size:1.2rem;">)</span><sub>T</sub>
             = 
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂P</span>
-                <span class="fdn">∂T</span>
-            </div>
+            <div class="fraction"><span>∂P</span><span class="fdn">∂T</span></div>
             <span style="font-size:1.2rem;">)</span><sub>V</sub>
         </div>
 
-        <p><strong>4. Gibbs Free Energy (G = H - TS):</strong> dG = -S dT + V dP</p>
+        <p><strong>4. From Gibbs Free Energy (dG = -S dT + V dP):</strong></p>
         <div class="formula-box">
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂S</span>
-                <span class="fdn">∂P</span>
-            </div>
+            <div class="fraction"><span>∂S</span><span class="fdn">∂P</span></div>
             <span style="font-size:1.2rem;">)</span><sub>T</sub>
             = -
             <span style="font-size:1.2rem;">(</span>
-            <div class="fraction">
-                <span>∂V</span>
-                <span class="fdn">∂T</span>
-            </div>
+            <div class="fraction"><span>∂V</span><span class="fdn">∂T</span></div>
             <span style="font-size:1.2rem;">)</span><sub>P</sub>
         </div>
     </div>
