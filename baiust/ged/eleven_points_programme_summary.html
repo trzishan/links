@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    @page {
+        size: A4;
+        margin: 18mm 16mm 18mm 16mm;
+        background-color: #0d1117;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #c9d1d9;
+        background-color: #0d1117;
+        margin: 0;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.5;
+    }
+
+    .header-banner {
+        border-bottom: 2px solid #30363d;
+        padding-bottom: 15px;
+        margin-bottom: 22px;
+    }
+
+    .badge {
+        display: inline-block;
+        background-color: rgba(188, 140, 255, 0.15);
+        color: #bc8cff;
+        border: 1px solid #bc8cff;
+        padding: 3px 10px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        color: #f0f6fc;
+        font-size: 22pt;
+        font-weight: 800;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+        color: #8b949e;
+        font-size: 11pt;
+        margin: 0;
+    }
+
+    .section-title {
+        color: #58a6ff;
+        font-size: 13pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 22px;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #21262d;
+        page-break-after: avoid;
+    }
+
+    ul.bullet-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    ul.bullet-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 9px;
+        color: #c9d1d9;
+    }
+
+    ul.bullet-list li::before {
+        content: "■";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #bc8cff;
+        font-size: 8pt;
+    }
+
+    ul.bullet-list li.blue-bullet::before {
+        color: #58a6ff;
+    }
+
+    ul.bullet-list li.green-bullet::before {
+        color: #3fb950;
+    }
+
+    ul.bullet-list li.red-bullet::before {
+        color: #f85149;
+    }
+
+    ul.bullet-list li.gold-bullet::before {
+        color: #d29922;
+    }
+
+    .highlight {
+        color: #f0f6fc;
+        font-weight: 600;
+    }
+
+    .tag {
+        background: #21262d;
+        color: #79c0ff;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 9.5pt;
+        font-family: monospace;
+    }
+
+    .callout-box {
+        background-color: #161b22;
+        border-left: 4px solid #bc8cff;
+        border-radius: 0 6px 6px 0;
+        padding: 12px 16px;
+        margin: 15px 0;
+    }
+
+    .callout-box-blue {
+        border-left-color: #58a6ff;
+    }
+
+    .callout-box-gold {
+        border-left-color: #d29922;
+    }
+
+    .stat-bar {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        padding: 12px 15px;
+        margin-bottom: 18px;
+    }
+
+    .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .stat-table td {
+        width: 33.33%;
+        text-align: center;
+        vertical-align: middle;
+        padding: 4px;
+    }
+
+    .stat-table td:not(:last-child) {
+        border-right: 1px solid #30363d;
+    }
+
+    .stat-num {
+        font-size: 16pt;
+        font-weight: 800;
+        color: #bc8cff;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 8.5pt;
+        color: #8b949e;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer {
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid #21262d;
+        text-align: center;
+        font-size: 8.5pt;
+        color: #484f58;
+    }
+</style>
+</head>
+<body>
+
+<div class="header-banner">
+    <div class="badge">HISTORICAL CHARTER • 1969 STUDENT MOVEMENT</div>
+    <h1>ELEVEN POINTS PROGRAMME</h1>
+    <p class="subtitle">The Unified Charter of Demands of Sarbadaliya Chhatra Sangram Parishad</p>
+</div>
+
+<div class="stat-bar">
+    <table class="stat-table">
+        <tr>
+            <td>
+                <span class="stat-num" style="color: #58a6ff;">4 Jan 1969</span>
+                <span class="stat-label">SAC Formally Formed</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #bc8cff;">11 Points</span>
+                <span class="stat-label">Comprehensive Charter</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #3fb950;">1969 Uprising</span>
+                <span class="stat-label">Catalyst for Ayub's Fall</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-title">1. Background & Formation</div>
+<div class="callout-box">
+    <ul class="bullet-list">
+        <li><span class="highlight">Core Definition:</span> A historic charter of demands framed by student leaders to remedy acute economic disparity between East and West Pakistan, expand political freedom, and overthrow the autocratic regime of Ayub Khan [cite: 1.1.1].</li>
+        <li><span class="highlight">Political Context:</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet">The Six-Point Movement suffered a temporary setback due to mass arrests of Awami League leaders and the filing of the Agartala Conspiracy Case in 1968 [cite: 1.1.1].</li>
+                <li class="blue-bullet">On 4 January 1969, major student bodies formed the <i>Sarbadaliya Chhatra Sangram Parishad</i> (All-Party Student Action Committee - SAC) led by DUCSU Vice President Tofael Ahmed alongside leaders from East Pakistan Students League and Students Union factions (Menon & Matia groups) [cite: 1.1.3, 1.1.4, 1.1.6].</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section-title">2. Complete Breakdown of the 11 Points</div>
+<div class="callout-box callout-box-gold">
+    <ul class="bullet-list">
+        <li><span class="tag">Point 1: Educational Reforms & Bangla Language</span> → Repeal anti-Bengali educational policies (e.g., Hamidur Rahman Education Commission report & DU Ordinance); establish schools/colleges in rural areas; make Bangla the medium of instruction and court/office exchange; lower tuition fees [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 2: Parliamentary Democracy</span> → Restore parliamentary government elected via universal adult franchise; guarantee press freedom and remove bans on newspapers like <i>The Daily Ittefaq</i> [cite: 1.1.3].</li>
+        <li><span class="tag">Point 3: Provincial Autonomy</span> → Grant full autonomy to East Pakistan based on the Awami League's Six-Point Programme [cite: 1.1.1, 1.1.3, 1.1.6].</li>
+        <li><span class="tag">Point 4: Federation & Dissolution of "One Unit"</span> → Dissolve the "One Unit" scheme in West Pakistan, restructuring it into autonomous provinces (Punjab, Sindh, KPK, Balochistan) [cite: 1.1.3].</li>
+        <li><span class="tag">Point 5: Nationalization of Key Industries</span> → Nationalize banks, insurance companies, and large industrial units, including raw jute processing plants [cite: 1.1.3].</li>
+        <li><span class="tag">Point 6: Peasant Rights & Land Tax Relief</span> → Reduce land revenue/taxes on farmers, exempt arrear debts, abolish the oppressive <i>Tahsildar</i> certificate system, and guarantee raw jute minimum price at Taka 40 per maund [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 7: Labor & Worker Protection</span> → Guarantee fair wages, bonuses, medical care, housing, and education for workers; repeal anti-labor "black laws" and protect right to strike and trade unions [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 8: Flood Control & Water Resources</span> → Implement comprehensive flood control projects and ensure optimal utilization of water resources in East Pakistan [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 9: Abrogation of Repressive Acts</span> → Immediately withdraw Emergency Act, Public Safety Act, and all draconian laws enacted by Ayub Khan's regime [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 10: Independent & Non-Aligned Foreign Policy</span> → Cancel Pak-US military pacts, exit SEATO and CENTO alliances, and adopt an independent, neutral foreign policy [cite: 1.1.1, 1.1.3].</li>
+        <li><span class="tag">Point 11: Release of Prisoners & Agartala Withdrawal</span> → Unconditionally release all political prisoners, students, workers, and peasants; withdraw all warrants and drop cases, including the Agartala Conspiracy Case [cite: 1.1.1, 1.1.3].</li>
+    </ul>
+</div>
+
+<div class="section-title">3. Historical Impact & Legacy</div>
+<ul class="bullet-list">
+    <li class="green-bullet"><span class="highlight">Unifying Opposition:</span> Combined student, labor, peasant, and political interests under a single unified platform, rallying wide public support [cite: 1.1.1, 1.1.6].</li>
+    <li class="green-bullet"><span class="highlight">Leadership Pivot:</span> Shifted the vanguard of the anti-Ayub movement directly into the hands of student leaders [cite: 1.1.1, 1.1.3].</li>
+    <li class="green-bullet"><span class="highlight">Engine of the 1969 Mass Uprising:</span> Triggered street protests culminating in the release of Sheikh Mujibur Rahman and the ultimate resignation of President Ayub Khan in March 1969 [cite: 1.1.1, 1.1.3, 1.1.6].</li>
+</ul>
+
+<div class="footer">
+    Compiled from Banglapedia Records | Document Generated for Maximum Knowledge Retention
+</div>
+
+</body>
+</html>

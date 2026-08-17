@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    @page {
+        size: A4;
+        margin: 18mm 16mm 18mm 16mm;
+        background-color: #0d1117;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #c9d1d9;
+        background-color: #0d1117;
+        margin: 0;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.5;
+    }
+
+    .header-banner {
+        border-bottom: 2px solid #30363d;
+        padding-bottom: 15px;
+        margin-bottom: 22px;
+    }
+
+    .badge {
+        display: inline-block;
+        background-color: rgba(210, 153, 34, 0.15);
+        color: #d29922;
+        border: 1px solid #d29922;
+        padding: 3px 10px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        color: #f0f6fc;
+        font-size: 22pt;
+        font-weight: 800;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+        color: #8b949e;
+        font-size: 11pt;
+        margin: 0;
+    }
+
+    .section-title {
+        color: #58a6ff;
+        font-size: 13pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 22px;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #21262d;
+        page-break-after: avoid;
+    }
+
+    ul.bullet-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    ul.bullet-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 9px;
+        color: #c9d1d9;
+    }
+
+    ul.bullet-list li::before {
+        content: "■";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #d29922;
+        font-size: 8pt;
+    }
+
+    ul.bullet-list li.blue-bullet::before {
+        color: #58a6ff;
+    }
+
+    ul.bullet-list li.green-bullet::before {
+        color: #3fb950;
+    }
+
+    ul.bullet-list li.red-bullet::before {
+        color: #f85149;
+    }
+
+    ul.bullet-list li.purple-bullet::before {
+        color: #bc8cff;
+    }
+
+    .highlight {
+        color: #f0f6fc;
+        font-weight: 600;
+    }
+
+    .tag {
+        background: #21262d;
+        color: #79c0ff;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 9.5pt;
+        font-family: monospace;
+    }
+
+    .callout-box {
+        background-color: #161b22;
+        border-left: 4px solid #d29922;
+        border-radius: 0 6px 6px 0;
+        padding: 12px 16px;
+        margin: 15px 0;
+    }
+
+    .callout-box-blue {
+        border-left-color: #58a6ff;
+    }
+
+    .callout-box-red {
+        border-left-color: #f85149;
+    }
+
+    .stat-bar {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        padding: 12px 15px;
+        margin-bottom: 18px;
+    }
+
+    .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .stat-table td {
+        width: 33.33%;
+        text-align: center;
+        vertical-align: middle;
+        padding: 4px;
+    }
+
+    .stat-table td:not(:last-child) {
+        border-right: 1px solid #30363d;
+    }
+
+    .stat-num {
+        font-size: 16pt;
+        font-weight: 800;
+        color: #d29922;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 8.5pt;
+        color: #8b949e;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer {
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid #21262d;
+        text-align: center;
+        font-size: 8.5pt;
+        color: #484f58;
+    }
+</style>
+</head>
+<body>
+
+<div class="header-banner">
+    <div class="badge">HISTORICAL BRIEFING • 1969 MASS MOVEMENT</div>
+    <h1>MASS UPSURGE, 1969</h1>
+    <p class="subtitle">The Great Public Awakening That Overthrew the Ayub Regime</p>
+</div>
+
+<div class="stat-bar">
+    <table class="stat-table">
+        <tr>
+            <td>
+                <span class="stat-num" style="color: #58a6ff;">4 Jan 1969</span>
+                <span class="stat-label">11-Point Programme Formed</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #f85149;">22 Feb 1969</span>
+                <span class="stat-label">Mujib Released Unconditionally</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #3fb950;">25 Mar 1969</span>
+                <span class="stat-label">Ayub Khan Resigns Power</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-title">1. Executive Overview & Root Causes</div>
+<div class="callout-box">
+    <ul class="bullet-list">
+        <li><span class="highlight">Core Definition:</span> The 1969 Mass Upsurge was the greatest mass awakening in East Pakistan since the 1947 creation of Pakistan, uniting students, workers, peasants, and political parties against President Ayub Khan's autocratic rule [cite: 1].</li>
+        <li><span class="highlight">Underlying Causes:</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet"><span class="highlight">Racial Repression & Deprivation:</span> Systematic political and economic discrimination against Bengalis within Pakistan [cite: 1].</li>
+                <li class="blue-bullet"><span class="highlight">Identity & Autonomy:</span> Evolution of Bengali national identity rooted in the Language Movement and the push for provincial autonomy [cite: 1].</li>
+                <li class="blue-bullet"><span class="highlight">Economic Struggle:</span> Low and middle-income groups turned student protests into a struggle for economic emancipation [cite: 1].</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section-title">2. Initial Mobilization (Late 1968 Timeline)</div>
+<ul class="bullet-list">
+    <li class="gold-bullet"><span class="highlight">Late 1968 Unrest:</span> Initiated with student unrest against Ayub Khan's regime [cite: 1].</li>
+    <li class="gold-bullet"><span class="highlight">6 December 1968 (Repression Resistance Day):</span>
+        <ul class="bullet-list" style="margin-top: 5px;">
+            <li class="blue-bullet">Maulana Abdul Hamid Khan Bhasani (NAP), Toaha (Workers' Federation), and Abdul Huq (Peasants' Association) held a rally at Paltan Maidan [cite: 1].</li>
+            <li class="blue-bullet">Protesters launched a massive "Gherao" (siege) of the Governor's House following clashes with police [cite: 1].</li>
+        </ul>
+    </li>
+    <li class="gold-bullet"><span class="highlight">7–8 December 1968:</span> Nationwide Hartal called by main opposition parties (NAP Bhasani & Muzaffar, Awami League, People's Party, Nezam-i-Islam, Jama't-i-Islami) [cite: 1].</li>
+    <li class="gold-bullet"><span class="highlight">14 & 29 December 1968:</span> Bhasani declared the continuation of the Gherao campaign, kicking off with the siege of the Pabna DC's bungalow on Dec 29 [cite: 1].</li>
+</ul>
+
+<div class="section-title">3. Alliances & Charters (January 1969)</div>
+<div class="callout-box callout-box-blue">
+    <ul class="bullet-list">
+        <li class="purple-bullet"><span class="highlight">4 January 1969 — Students' Action Committee (SAC):</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet">Formed by Students League, Students Union (Menon & Matia groups), and a faction of the NSF alongside DUCSU [cite: 1].</li>
+                <li class="blue-bullet">Formulated the <span class="highlight">11-Point Programme</span>, incorporating Awami League's 6 Points, student autonomy demands, and labor rights [cite: 1].</li>
+            </ul>
+        </li>
+        <li class="purple-bullet"><span class="highlight">8 January 1969 — Democratic Action Committee (DAC):</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet">Formed by 8 opposition political parties (including Awami League and NAP Muzaffar) [cite: 1].</li>
+                <li class="blue-bullet">Demanded federal government, universal adult franchise, emergency rule withdrawal, and release of all political detainees (Sheikh Mujib, Wali Khan, Zulfiqar Ali Bhutto) [cite: 1].</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div class="section-title">4. Key Martyrs & Escalation Phase</div>
+<ul class="bullet-list">
+    <li class="red-bullet"><span class="highlight">20 January 1969 — Martyrdom of Asaduzzaman:</span> Asad, a leader of the Students Union (Menon), was shot dead by police during a DU campus procession, turning the agitation into a full national upsurge [cite: 1].</li>
+    <li class="red-bullet"><span class="highlight">24 January 1969 — Mass Murders & Curfew:</span> Class IX student Matiur and Rustam were killed by police fire; army deployed and indefinite curfew imposed after indiscriminate firing killed civilians [cite: 1].</li>
+    <li class="red-bullet"><span class="highlight">15 February 1969 — Custodial Death of Sergeant Zahrul Huq:</span> An undertrial prisoner in the Agartala Conspiracy Case, Zahrul Huq was shot in Dhaka Cantonment [cite: 1]. Bhasani threatened a French Revolution-style Bastille storming to free Mujib, sparking widespread arson of ministers' homes [cite: 1].</li>
+    <li class="red-bullet"><span class="highlight">18 February 1969 — Killing of Dr. Shamsuzzoha:</span> Dr. Mohammad Shamsuzzoha, Proctor of Rajshahi University, was bayoneted to death by troops, prompting massive street defiance of curfews nationwide [cite: 1].</li>
+</ul>
+
+<div class="section-title">5. Radical Popular Actions & Mass Uprising</div>
+<div class="callout-box callout-box-red">
+    <ul class="bullet-list">
+        <li class="gold-bullet"><span class="highlight">Rural Peasant Uprising:</span> Peasants and students set up local tribunals, tried corrupt tax collectors, police, and circle officers, forcing union council chairmen to resign [cite: 1].</li>
+        <li class="gold-bullet"><span class="highlight">Urban Worker Gheraos:</span> Industrial workers utilized the Gherao movement to paralyze factories and secure long-denied economic rights [cite: 1].</li>
+        <li class="gold-bullet"><span class="highlight">Demolishing Bureaucracy:</span> Breakdown of state authority minimized popular fear of police, civil, and military bureaucrats [cite: 1].</li>
+    </ul>
+</div>
+
+<div class="section-title">6. Victory, Regime Collapse & Long-Term Impact</div>
+<ul class="bullet-list">
+    <li class="green-bullet"><span class="highlight">Collapse of Agartala Case:</span> Unable to control the territory, Ayub Khan withdrew the Agartala Conspiracy Case and announced he would not contest the next Presidential election [cite: 1].</li>
+    <li class="green-bullet"><span class="highlight">22 February 1969:</span> Sheikh Mujibur Rahman and 34 co-accused were released unconditionally to a hero's welcome [cite: 1].</li>
+    <li class="green-bullet"><span class="highlight">Fallback to Round Table Talks:</span> Sheikh Mujib joined Ayub's Round Table Conference (RTC) appealing for peace, while Bhasani boycotted it, framing the movement as an irreconcilable struggle between oppressors and the oppressed [cite: 1].</li>
+    <li class="green-bullet"><span class="highlight">Fall of Ayub Khan (25 March 1969):</span> Ayub resigned and handed power to Army Chief Gen. Yahya Khan [cite: 1]. Yahya re-imposed Martial Law but agreed to hold elections based on universal adult franchise [cite: 1].</li>
+    <li class="green-bullet"><span class="highlight">Historical Significance:</span> Solidified Bengali nationalism, built class consciousness, destroyed bureaucratic fear, and set the direct trajectory toward the 1971 War of Liberation [cite: 1].</li>
+</ul>
+
+<div class="footer">
+    Compiled from Banglapedia Records | Document Generated for Maximum Knowledge Retention
+</div>
+
+</body>
+</html>

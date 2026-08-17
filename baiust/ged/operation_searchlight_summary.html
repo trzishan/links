@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    @page {
+        size: A4;
+        margin: 18mm 16mm 18mm 16mm;
+        background-color: #0d1117;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        color: #c9d1d9;
+        background-color: #0d1117;
+        margin: 0;
+        padding: 0;
+        font-size: 10.5pt;
+        line-height: 1.5;
+    }
+
+    .header-banner {
+        border-bottom: 2px solid #30363d;
+        padding-bottom: 15px;
+        margin-bottom: 22px;
+    }
+
+    .badge {
+        display: inline-block;
+        background-color: #rgba(248, 81, 73, 0.15);
+        color: #ff7b72;
+        border: 1px solid #f85149;
+        padding: 3px 10px;
+        font-size: 8.5pt;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    h1 {
+        color: #f0f6fc;
+        font-size: 22pt;
+        font-weight: 800;
+        margin: 0 0 6px 0;
+        letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+        color: #8b949e;
+        font-size: 11pt;
+        margin: 0;
+    }
+
+    .section-title {
+        color: #58a6ff;
+        font-size: 13pt;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 22px;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid #21262d;
+        page-break-after: avoid;
+    }
+
+    .card-grid {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    ul.bullet-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    ul.bullet-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 9px;
+        color: #c9d1d9;
+    }
+
+    ul.bullet-list li::before {
+        content: "■";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: #f85149;
+        font-size: 8pt;
+    }
+
+    ul.bullet-list li.blue-bullet::before {
+        color: #58a6ff;
+    }
+
+    ul.bullet-list li.gold-bullet::before {
+        color: #d29922;
+    }
+
+    ul.bullet-list li.purple-bullet::before {
+        color: #bc8cff;
+    }
+
+    .highlight {
+        color: #f0f6fc;
+        font-weight: 600;
+    }
+
+    .tag {
+        background: #21262d;
+        color: #79c0ff;
+        padding: 1px 6px;
+        border-radius: 3px;
+        font-size: 9.5pt;
+        font-family: monospace;
+    }
+
+    .callout-box {
+        background-color: #161b22;
+        border-left: 4px solid #f85149;
+        border-radius: 0 6px 6px 0;
+        padding: 12px 16px;
+        margin: 15px 0;
+    }
+
+    .callout-box-blue {
+        border-left-color: #58a6ff;
+    }
+
+    .callout-box-gold {
+        border-left-color: #d29922;
+    }
+
+    .stat-bar {
+        background-color: #161b22;
+        border: 1px solid #30363d;
+        border-radius: 6px;
+        padding: 12px 15px;
+        margin-bottom: 18px;
+    }
+
+    .stat-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .stat-table td {
+        width: 33.33%;
+        text-align: center;
+        vertical-align: middle;
+        padding: 4px;
+    }
+
+    .stat-table td:not(:last-child) {
+        border-right: 1px solid #30363d;
+    }
+
+    .stat-num {
+        font-size: 16pt;
+        font-weight: 800;
+        color: #ff7b72;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 8.5pt;
+        color: #8b949e;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .footer {
+        margin-top: 30px;
+        padding-top: 10px;
+        border-top: 1px solid #21262d;
+        text-align: center;
+        font-size: 8.5pt;
+        color: #484f58;
+    }
+</style>
+</head>
+<body>
+
+<div class="header-banner">
+    <div class="badge">HISTORICAL BRIEFING • 1971 LIBERATION WAR</div>
+    <h1>OPERATION SEARCHLIGHT</h1>
+    <p class="subtitle">An Analysis & Key Highlights of the March 25, 1971 Military Crackdown</p>
+</div>
+
+<div class="stat-bar">
+    <table class="stat-table">
+        <tr>
+            <td>
+                <span class="stat-num" style="color: #ff7b72;">7,000+</span>
+                <span class="stat-label">Killed (Dhaka Night 1)</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #d29922;">11:30 PM</span>
+                <span class="stat-label">Actual Launch (March 25)</span>
+            </td>
+            <td>
+                <span class="stat-num" style="color: #58a6ff;">8 Zones</span>
+                <span class="stat-label">Initial Targets</span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="section-title">1. Executive Overview & Strategic Objectives</div>
+<div class="callout-box">
+    <ul class="bullet-list">
+        <li><span class="highlight">Definition:</span> Operation Searchlight was a brutal, systematic military operation launched by the Pakistan Armed Forces on <span class="highlight">25 March 1971</span> to crush the Bengali self-determination movement and non-cooperation campaign led by <span class="highlight">Bangabandhu Sheikh Mujibur Rahman</span>.</li>
+        <li><span class="highlight">Core Objective:</span> Neutralize political resistance, neutralize Bengali leadership, and regain total control over East Pakistan.</li>
+        <li><span class="highlight">Primary Target Groups:</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet">Prominent Awami League political leaders and student leaders</li>
+                <li class="blue-bullet">Bengali intellectuals, university professors, and cultural activists</li>
+                <li class="blue-bullet">Bengali personnel serving in military, paramilitary (EPR), and police forces</li>
+            </ul>
+        </li>
+        <li><span class="highlight">Key Infrastructure Targets:</span> Armouries, radio stations, telephone exchanges, and media offices.</li>
+        <li><span class="highlight">Timeframe:</span> Commenced <span class="highlight">25 March 1971 at 11:30 PM</span>; major operations continued through mid-May 1971 across all major urban centers.</li>
+    </ul>
+</div>
+
+<div class="section-title">2. Timeline Shift & Tactical Pre-emption</div>
+<ul class="bullet-list">
+    <li class="gold-bullet"><span class="highlight">Original Schedule:</span> Official launch was planned for <span class="highlight">13:00 hrs on 26 March 1971</span>.</li>
+    <li class="gold-bullet"><span class="highlight">The Trigger:</span> On the evening of 25 March, Sheikh Mujibur Rahman called for an all-out struggle after talks with President Yahya Khan yielded no tangible results. Bengali civilians quickly raised street barricades across Dhaka.</li>
+    <li class="gold-bullet"><span class="highlight">Pre-emptive Execution:</span> To catch resistance unprepared, military leadership brought the operation forward by 13.5 hours to <span class="highlight">11:30 PM on 25 March</span> (noted by PRO Major Siddique Salek).</li>
+    <li class="gold-bullet"><span class="highlight">Pakistan's Justification:</span> A White Paper published by Pakistan (5 August 1971) claimed the schedule was moved forward because the Awami League planned an armed revolution at dawn on 26 March.</li>
+</ul>
+
+<div class="section-title">3. Command Structure & Masterminds</div>
+<div class="callout-box callout-box-blue">
+    <ul class="bullet-list">
+        <li class="purple-bullet"><span class="highlight">Maj. Gen. Khadim Hossain Raja</span> (GOC, 14th Division) & <span class="highlight">Maj. Gen. Rao Farman Ali Khan</span> (GOC, 57th Division): Initiated operational decision on 22 February 1971.</li>
+        <li class="purple-bullet"><span class="highlight">Rao Farman Ali:</span> Personally authored the official <span class="highlight">5-page operational plan</span> on 18 March at Dhaka Cantonment.</li>
+        <li class="purple-bullet"><span class="highlight">General Abdul Hamid Khan</span> (Chief of Staff): Ordered finalization of plans on 17 March; conducted helicopter inspections of regional cantonments with Col. Sadullah & Gen. A.O. Miththi on 24–25 March.</li>
+        <li class="purple-bullet"><span class="highlight">Operational Leadership Split:</span>
+            <ul class="bullet-list" style="margin-top: 5px;">
+                <li class="blue-bullet"><span class="highlight">Dhaka Expedition:</span> Led by Maj. Gen. Rao Farman Ali.</li>
+                <li class="blue-bullet"><span class="highlight">Regional Operations:</span> Led by Maj. Gen. Khadim Hossain Raja.</li>
+                <li class="blue-bullet"><span class="highlight">Overall Supervision:</span> Lt. Gen. Tikka Khan from 31 Field Command post.</li>
+            </ul>
+        </li>
+        <li class="purple-bullet"><span class="highlight">Presidential Emissaries:</span> Maj. Gen. Iftekhar Janjua and Maj. Gen. A.O. Miththi summoned directly by Yahya Khan to assist.</li>
+    </ul>
+</div>
+
+<div class="section-title">4. Eight-Point Operational Strategy</div>
+<ul class="bullet-list">
+    <li><span class="highlight">Simultaneous Execution:</span> Launch attacks simultaneously across all of East Pakistan.</li>
+    <li><span class="highlight">Mass Arrests:</span> Round up politicians, student leaders, university faculty, and extremist cultural activists.</li>
+    <li><span class="highlight">100% Dhaka Control:</span> Total military control of Dhaka, prioritizing the capture of Dhaka University.</li>
+    <li><span class="highlight">Base Security:</span> Ensure total security of military cantonments.</li>
+    <li><span class="highlight">Communication Blackout:</span> Sever all domestic/international comms (telephone, radio, TV, teleprinters, foreign consulate transmitters).</li>
+    <li><span class="highlight">Disarm Bengali Troops:</span> Disarm East Pakistan Rifles (EPR) soldiers; replace them with West Pakistani troops at armouries.</li>
+    <li><span class="highlight">Phase 1 Operational Zones:</span> Dhaka, Chittagong, Comilla, Jessore, Khulna, Rangpur, Syedpur, Sylhet (air support authorized).</li>
+    <li><span class="highlight">Eliminate Barricades:</span> Clear all road blockades and assault listed political residences.</li>
+</ul>
+
+<div class="section-title">5. Tactical Unit Assignments (Dhaka Focus)</div>
+<div class="callout-box callout-box-gold">
+    <ul class="bullet-list">
+        <li class="blue-bullet"><span class="tag">22-Baluch Regiment</span> → Neutralize & disarm 5,000 Bengali EPR troops at Peelkhana; capture radio center.</li>
+        <li class="blue-bullet"><span class="tag">32-Punjab Regiment</span> → Disarm 1,000 armed Bengali policemen at Rajarbagh Police Lines.</li>
+        <li class="blue-bullet"><span class="tag">18-Punjab Regiment</span> → Assault Hindu-majority areas in Nawabpur and Old Dhaka.</li>
+        <li class="blue-bullet"><span class="tag">Joint Force (22-Baluch, 18/32 Punjab)</span> → Storm Dhaka University halls (Iqbal, Jagannath) & BUET (Liaquat Hall).</li>
+        <li class="blue-bullet"><span class="tag">Special Service Group (SSG) Platoon</span> → Assault Dhanmondi residence and arrest <span class="highlight">Bangabandhu Sheikh Mujibur Rahman</span> (arrested at 1:30 AM).</li>
+        <li class="blue-bullet"><span class="tag">Field Regiment</span> → Secure Second Capital and adjoining areas (Mirpur & Mohammadpur).</li>
+        <li class="blue-bullet"><span class="tag">Armored Unit</span> → Deploy M24 light tank squadrons on major roads for intimidation and shelling.</li>
+    </ul>
+</div>
+
+<div class="section-title">6. Execution, Casualties & Atrocities</div>
+<ul class="bullet-list">
+    <li><span class="highlight">Initial Clash:</span> First shots fired at Farmgate at 11:30 PM against demonstrating Bengali civilians clearing barricades.</li>
+    <li><span class="highlight">Academic Massacre:</span> Night raids on Dhaka University residence halls (Iqbal, Jagannath, Rokeya) and faculty quarters resulted in mass slaughters of students and 9 university professors.</li>
+    <li><span class="highlight">City-Wide Assaults:</span> Heavy shelling/attacks in Tejgaon, Indira Road, Mirpur, Mohammadpur, Dhaka Airport, Ganaktuli, Dhanmondi, Kalabagan, Kathalbagan, and Chittagong.</li>
+    <li><span class="highlight">Press Suppression:</span> Offices of pro-liberation newspapers (<i>The Daily Ittefaq</i>, <i>Sangbad</i>, <i>The People</i>) torched; numerous journalists burned alive inside.</li>
+    <li><span class="highlight">Estimated Body Count:</span>
+        <ul class="bullet-list" style="margin-top: 5px;">
+            <li class="gold-bullet"><span class="highlight">7,000 Bengalis</span> killed on night 1 in Dhaka city alone.</li>
+            <li class="gold-bullet"><span class="highlight">700 people</span> burned to death in Old Dhaka.</li>
+            <li class="gold-bullet"><span class="highlight">200+ students</span> killed at Iqbal Hall alone (reported by Simon Dring).</li>
+        </ul>
+    </li>
+</ul>
+
+<div class="section-title">7. Foreign Press Reporting & Political Reaction</div>
+<ul class="bullet-list">
+    <li class="purple-bullet"><span class="highlight">Press Censorship & Expulsion:</span> Most foreign correspondents were forcibly deported prior to March 25.</li>
+    <li class="purple-bullet"><span class="highlight">Heroic Journalism:</span> <span class="highlight">Simon Dring</span> (<i>Daily Telegraph</i>), Arnold Zeitlin, and Michel Laurent evaded capture in Dhaka to report the initial massacres ("Dateline Dacca").</li>
+    <li class="purple-bullet"><span class="highlight">Political Responses:</span>
+        <ul class="bullet-list" style="margin-top: 5px;">
+            <li class="blue-bullet"><span class="highlight">President Yahya Khan:</span> Secretly fled Dhaka for Karachi right before operations commenced.</li>
+            <li class="blue-bullet"><span class="highlight">Zulfiqar Ali Bhutto:</span> Observed the night assault from Hotel Intercontinental; famously stated, <i>"Thanks to God that Pakistan could have been saved."</i></li>
+            <li class="blue-bullet"><span class="highlight">Pakistani State Narrative:</span> Officially classified the military operation as "inevitable" in its August 5 White Paper.</li>
+        </ul>
+    </li>
+</ul>
+
+<div class="footer">
+    Compiled from Historical Records | Document Generated for Maximum Knowledge Retention
+</div>
+
+</body>
+</html>
