@@ -5,7 +5,13 @@ const ASSETS_TO_CACHE = [
   './index.html',
   './style.css',
   './all-physics-theory.html',
-  './physics-math-questions.html'
+  './physics-math-questions.html',
+  './ged/1970_pakistani_general_election_summary.html',
+  './ged/eleven_points_programme_summary.html',
+  './ged/historical_slogans_summary.html',
+  './ged/mass_upsurge_1969_summary.html',
+  './ged/operation_searchlight_summary.html',
+  './ged/six_point_programme_summary.html'
 ];
 
 // Install Event
