@@ -1,17 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
-    <title>GED</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bangladesh Liberation Movement & 1971 History Briefs</title>
+<style>
+    :root {
+        --bg-color: #0d1117;
+        --card-bg: #161b22;
+        --border-color: #30363d;
+        --text-primary: #f0f6fc;
+        --text-secondary: #c9d1d9;
+        --text-muted: #8b949e;
+        --accent-red: #f85149;
+        --accent-blue: #58a6ff;
+        --accent-gold: #d29922;
+        --accent-green: #3fb950;
+        --accent-purple: #bc8cff;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Kalpurush";
+        color: var(--text-secondary);
+        background-color: var(--bg-color);
+        margin: 0;
+        padding: 16px;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .document-card {
+        background-color: var(--bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 32px;
+    }
+
+    .header-banner {
+        border-bottom: 2px solid var(--border-color);
+        padding-bottom: 12px;
+        margin-bottom: 20px;
+    }
+
+    .badge {
+        display: inline-block;
+        padding: 3px 8px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+
+    .badge-red { background-color: rgba(248, 81, 73, 0.15); color: var(--accent-red); border: 1px solid var(--accent-red); }
+    .badge-blue { background-color: rgba(88, 166, 255, 0.15); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+    .badge-gold { background-color: rgba(210, 153, 34, 0.15); color: var(--accent-gold); border: 1px solid var(--accent-gold); }
+    .badge-green { background-color: rgba(63, 185, 80, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .badge-purple { background-color: rgba(188, 140, 255, 0.15); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+
+    h1 {
+        color: var(--text-primary);
+        font-size: 22px;
+        font-weight: 800;
+        margin: 0 0 4px 0;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        color: var(--text-muted);
+        font-size: 13px;
+        margin: 0;
+    }
+
+    .section-title {
+        color: var(--accent-blue);
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-top: 20px;
+        margin-bottom: 12px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    ul.bullet-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+    }
+
+    ul.bullet-list li {
+        position: relative;
+        padding-left: 18px;
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+        font-size: 13px;
+    }
+
+    ul.bullet-list li::before {
+        content: "■";
+        position: absolute;
+        left: 0;
+        top: 0;
+        color: var(--accent-blue);
+        font-size: 8px;
+    }
+
+    ul.bullet-list li.red-bullet::before { color: var(--accent-red); }
+    ul.bullet-list li.gold-bullet::before { color: var(--accent-gold); }
+    ul.bullet-list li.green-bullet::before { color: var(--accent-green); }
+    ul.bullet-list li.purple-bullet::before { color: var(--accent-purple); }
+
+    .highlight {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .tag {
+        background: #21262d;
+        color: #79c0ff;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+        display: inline-block;
+        margin-bottom: 4px;
+    }
+
+    .callout-box {
+        background-color: var(--card-bg);
+        border-left: 4px solid var(--accent-blue);
+        border-radius: 0 6px 6px 0;
+        padding: 12px 16px;
+        margin: 12px 0;
+    }
+
+    .callout-box-red { border-left-color: var(--accent-red); }
+    .callout-box-gold { border-left-color: var(--accent-gold); }
+    .callout-box-purple { border-left-color: var(--accent-purple); }
+    .callout-box-blue { border-left-color: var(--accent-blue); }
+
+    .stat-bar {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 6px;
+        padding: 12px;
+        margin-bottom: 16px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 8px;
+    }
+
+    .stat-item {
+        flex: 1;
+        text-align: center;
+        padding: 2px;
+    }
+
+    .stat-item:not(:last-child) {
+        border-right: 1px solid var(--border-color);
+    }
+
+    .stat-num {
+        font-size: 16px;
+        font-weight: 800;
+        display: block;
+        line-height: 1.2;
+    }
+
+    .stat-label {
+        font-size: 9px;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    ol.slogan-list {
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    ol.slogan-list li {
+        color: var(--text-primary);
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .footer {
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-color);
+        text-align: center;
+        font-size: 10px;
+        color: var(--text-muted);
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 600px) {
+        body { padding: 8px; }
+        .document-card { padding: 12px; margin-bottom: 20px; }
+        h1 { font-size: 18px; }
+        .stat-bar { flex-direction: column; gap: 8px; text-align: left; }
+        .stat-item { text-align: left; padding: 4px 0; }
+        .stat-item:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        .stat-num { font-size: 15px; display: inline; margin-right: 6px; }
+        .stat-label { display: inline; }
+    }
+</style>
 </head>
 <body>
-    <a class="card" href="./1970_pakistani_general_election_summary.html" data-link>1970 Election</a>
-    <a class="card" href="./eleven_points_programme_summary.html" data-link>11 Point Program</a>
-    <a class="card" href="./historical_slogans_summary.html" data-link>Slogan</a>
-    <a class="card" href="./mass_upsurge_1969_summary.html" data-link>Mass Upsurge</a>
-    <a class="card" href="./operation_searchlight_summary.html" data-link>Operation Searchlight</a>
-    <a class="card" href="./six_point_programme_summary.html" data-link>6 Point Program</a>
+
+<div class="container">
+
+    <!-- 1. OPERATION SEARCHLIGHT -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-red">HISTORICAL BRIEFING • 1971 LIBERATION WAR</div>
+            <h1>OPERATION SEARCHLIGHT</h1>
+            <p class="subtitle">An Analysis & Key Highlights of the March 25, 1971 Military Crackdown</p>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-red);">7,000+</span>
+                <span class="stat-label">Killed (Dhaka Night 1)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-gold);">11:30 PM</span>
+                <span class="stat-label">Actual Launch (March 25)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-blue);">8 Zones</span>
+                <span class="stat-label">Initial Targets</span>
+            </div>
+        </div>
+
+        <div class="section-title">1. Executive Overview & Strategic Objectives</div>
+        <div class="callout-box callout-box-red">
+            <ul class="bullet-list">
+                <li class="red-bullet"><span class="highlight">Definition:</span> Operation Searchlight was a brutal, systematic military operation launched by the Pakistan Armed Forces on <span class="highlight">25 March 1971</span> to crush the Bengali self-determination movement and non-cooperation campaign led by <span class="highlight">Bangabandhu Sheikh Mujibur Rahman</span>.</li>
+                <li class="red-bullet"><span class="highlight">Core Objective:</span> Neutralize political resistance, neutralize Bengali leadership, and regain total control over East Pakistan.</li>
+                <li class="red-bullet"><span class="highlight">Primary Target Groups:</span> Prominent Awami League leaders, student leaders, Bengali intellectuals, university professors, and Bengali personnel in military, paramilitary (EPR), and police forces.</li>
+                <li class="red-bullet"><span class="highlight">Key Infrastructure Targets:</span> Armouries, radio stations, telephone exchanges, and media offices.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">2. Timeline Shift & Pre-emption</div>
+        <ul class="bullet-list">
+            <li class="gold-bullet"><span class="highlight">Original Schedule:</span> Official launch was planned for <span class="highlight">13:00 hrs on 26 March 1971</span>.</li>
+            <li class="gold-bullet"><span class="highlight">The Trigger:</span> Talks between Sheikh Mujib and Yahya Khan failed on March 25. Mujib called for an all-out struggle, leading civilians to build street barricades across Dhaka.</li>
+            <li class="gold-bullet"><span class="highlight">Pre-emptive Strike:</span> Military leadership brought the operation forward by 13.5 hours to <span class="highlight">11:30 PM on 25 March</span> to catch resistance off guard.</li>
+        </ul>
+
+        <div class="section-title">3. Command Structure</div>
+        <div class="callout-box callout-box-blue">
+            <ul class="bullet-list">
+                <li class="purple-bullet"><span class="highlight">Maj. Gen. Khadim Hossain Raja</span> & <span class="highlight">Maj. Gen. Rao Farman Ali Khan:</span> Initiated decision on 22 February 1971. Rao Farman Ali authored the 5-page plan on 18 March.</li>
+                <li class="purple-bullet"><span class="highlight">Operational Leadership:</span> Dhaka expedition led by Maj. Gen. Rao Farman Ali; regional operations led by Maj. Gen. Khadim Hossain Raja; overall supervision by Lt. Gen. Tikka Khan.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">4. Tactical Unit Assignments (Dhaka Focus)</div>
+        <ul class="bullet-list">
+            <li class="gold-bullet"><span class="tag">22-Baluch Regiment</span> → Disarm 5,000 Bengali EPR troops at Peelkhana; capture radio center.</li>
+            <li class="gold-bullet"><span class="tag">32-Punjab Regiment</span> → Disarm 1,000 armed Bengali policemen at Rajarbagh Police Lines.</li>
+            <li class="gold-bullet"><span class="tag">18-Punjab Regiment</span> → Assault Hindu-majority areas in Nawabpur and Old Dhaka.</li>
+            <li class="gold-bullet"><span class="tag">SSG Commando Platoon</span> → Attack Dhanmondi residence and arrest Bangabandhu Sheikh Mujibur Rahman (arrested at 1:30 AM).</li>
+            <li class="gold-bullet"><span class="tag">Joint Unit Assaults</span> → Attack Dhaka University student halls (Iqbal, Jagannath, Rokeya) and BUET (Liaquat Hall), killing students and 9 university professors.</li>
+        </ul>
+        <div class="footer">Compiled from Historical Records</div>
+    </div>
+
+    <!-- 2. SIX-POINT PROGRAMME -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-blue">HISTORICAL CHARTER • 1966 LIBERATION MOVEMENT</div>
+            <h1>SIX-POINT PROGRAMME</h1>
+            <p class="subtitle">The Charter of Demands & Autonomy Movement of East Bengal</p>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-blue);">Feb 1966</span>
+                <span class="stat-label">First Unveiled (Lahore)</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-green);">1970 Mandate</span>
+                <span class="stat-label">Landslide Victory</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-red);">22 Feb 1969</span>
+                <span class="stat-label">Mujib Released</span>
+            </div>
+        </div>
+
+        <div class="section-title">1. Background & Context</div>
+        <div class="callout-box">
+            <ul class="bullet-list">
+                <li><span class="highlight">Core Definition:</span> A charter enunciated by the Awami League to remove regional economic disparity and terminate West Pakistan's internal colonial rule[cite: 2].</li>
+                <li><span class="highlight">Catalyst:</span> The 1965 Indo-Pak War and Taskent Treaty exposed the central government's total negligence toward East Pakistan's defense[cite: 2].</li>
+            </ul>
+        </div>
+
+        <div class="section-title">2. The Six Demands</div>
+        <div class="callout-box callout-box-gold">
+            <ul class="bullet-list">
+                <li><span class="tag">Point 1: True Federation</span> → Parliamentary government based on the Lahore Resolution with direct adult franchise[cite: 2].</li>
+                <li><span class="tag">Point 2: Restricted Central Powers</span> → Federal center handles only <span class="highlight">Defence</span> and <span class="highlight">Foreign Affairs</span>; all other subjects vested in states[cite: 2].</li>
+                <li><span class="tag">Point 3: Currency & Banking</span> → Two separate freely convertible currencies OR constitutional checks against capital flight from East to West; separate Banking Reserve for East Pakistan[cite: 2].</li>
+                <li><span class="tag">Point 4: Taxation Autonomy</span> → Power of taxation vested strictly in federating units; center receives a shared percentage[cite: 2].</li>
+                <li><span class="tag">Point 5: Foreign Trade</span> → Separate foreign exchange accounts; freedom to establish direct international trade links[cite: 2].</li>
+                <li><span class="tag">Point 6: Regional Militia</span> → Provision for East Pakistan to maintain a separate militia/paramilitary force[cite: 2].</li>
+            </ul>
+        </div>
+
+        <div class="section-title">3. Suppression & Impact</div>
+        <ul class="bullet-list">
+            <li class="red-bullet"><span class="highlight">Agartala Conspiracy Case:</span> Ayub regime jailed Mujib under treason charges, sparking the 1969 Mass Uprising which forced his unconditional release on 22 Feb 1969[cite: 2].</li>
+            <li class="green-bullet"><span class="highlight">1970 Electoral Mandate:</span> Awami League won an absolute public mandate on the Six-Point manifesto[cite: 2].</li>
+        </ul>
+        <div class="footer">Compiled from Historical Records</div>
+    </div>
+
+    <!-- 3. MASS UPSURGE, 1969 -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-gold">HISTORICAL BRIEFING • 1969 MASS MOVEMENT</div>
+            <h1>MASS UPSURGE, 1969</h1>
+            <p class="subtitle">The Great Public Awakening That Overthrew the Ayub Regime</p>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-blue);">4 Jan 1969</span>
+                <span class="stat-label">11-Point Formed</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-red);">22 Feb 1969</span>
+                <span class="stat-label">Mujib Released</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-green);">25 Mar 1969</span>
+                <span class="stat-label">Ayub Resigns</span>
+            </div>
+        </div>
+
+        <div class="section-title">1. Escalation & Key Martyrs</div>
+        <ul class="bullet-list">
+            <li class="red-bullet"><span class="highlight">20 Jan 1969:</span> Asaduzzaman (Students Union Menon Group) shot dead by police during a DU procession[cite: 1].</li>
+            <li class="red-bullet"><span class="highlight">24 Jan 1969:</span> Student Matiur and Rustam killed by police firing; indefinite curfew imposed[cite: 1].</li>
+            <li class="red-bullet"><span class="highlight">15 Feb 1969:</span> Custodial murder of Sergeant Zahrul Huq (Agartala case undertrial) in Dhaka Cantonment[cite: 1].</li>
+            <li class="red-bullet"><span class="highlight">18 Feb 1969:</span> Dr. Mohammad Shamsuzzoha (Proctor, Rajshahi University) bayoneted to death by military forces[cite: 1].</li>
+        </ul>
+
+        <div class="section-title">2. Victory & Regime Collapse</div>
+        <div class="callout-box callout-box-red">
+            <ul class="bullet-list">
+                <li class="green-bullet"><span class="highlight">Case Withdrawal:</span> Ayub Khan withdrew the Agartala Conspiracy Case and released Sheikh Mujib unconditionally on 22 Feb 1969[cite: 1].</li>
+                <li class="green-bullet"><span class="highlight">Resignation:</span> On 25 March 1969, Ayub Khan resigned and handed power to General Yahya Khan, who agreed to hold future elections based on universal adult franchise[cite: 1].</li>
+            </ul>
+        </div>
+        <div class="footer">Compiled from Banglapedia Records</div>
+    </div>
+
+    <!-- 4. ELEVEN POINTS PROGRAMME -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-purple">HISTORICAL CHARTER • 1969 STUDENT MOVEMENT</div>
+            <h1>ELEVEN POINTS PROGRAMME</h1>
+            <p class="subtitle">The Unified Charter of Demands of Sarbadaliya Chhatra Sangram Parishad</p>
+        </div>
+
+        <div class="section-title">Summary of All 11 Demands</div>
+        <div class="callout-box callout-box-purple">
+            <ul class="bullet-list">
+                <li><span class="tag">1. Education</span> → Repeal Hamidur Rahman Commission report & DU Ordinance; Bangla as medium of instruction.</li>
+                <li><span class="tag">2. Democracy</span> → Parliamentary form via adult franchise; restore press freedom.</li>
+                <li><span class="tag">3. Autonomy</span> → Full provincial autonomy based on Awami League's Six-Point Programme.</li>
+                <li><span class="tag">4. Dissolve One Unit</span> → Restructure West Pakistan into autonomous provinces (Punjab, Sindh, KPK, Balochistan).</li>
+                <li><span class="tag">5. Nationalization</span> → Nationalize banks, insurance companies, and raw jute mills.</li>
+                <li><span class="tag">6. Peasant Relief</span> → Lower agricultural taxes; abolish Tahsildar certificate system; fix minimum jute price at Taka 40/maund.</li>
+                <li><span class="tag">7. Labor Protection</span> → Fair wages, medical care, housing, and right to strike.</li>
+                <li><span class="tag">8. Water Control</span> → Implement comprehensive flood control in East Pakistan.</li>
+                <li><span class="tag">9. Law Repeal</span> → Immediately withdraw Emergency Act and Public Safety Act.</li>
+                <li><span class="tag">10. Foreign Policy</span> → Cancel Pak-US military pacts; exit SEATO/CENTO.</li>
+                <li><span class="tag">11. Release Detainees</span> → Unconditionally release political prisoners; drop Agartala Conspiracy Case.</li>
+            </ul>
+        </div>
+        <div class="footer">Compiled from Banglapedia Records</div>
+    </div>
+
+    <!-- 5. 1970 GENERAL ELECTION -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-green">HISTORICAL BRIEFING • 1970 GENERAL ELECTIONS</div>
+            <h1>1970 PAKISTANI GENERAL ELECTION</h1>
+            <p class="subtitle">The Democratic Mandate That Reshaped South Asia</p>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-green);">167 / 313</span>
+                <span class="stat-label">Awami League Total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-blue);">86 / 313</span>
+                <span class="stat-label">PPP Total Seats</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-gold);">160 / 162</span>
+                <span class="stat-label">AL East Pak General</span>
+            </div>
+        </div>
+
+        <div class="section-title">Electoral Results & Crisis</div>
+        <ul class="bullet-list">
+            <li class="green-bullet"><span class="highlight">Awami League Victory:</span> Won 160 of 162 general seats in East Pakistan (+7 reserved women seats), securing an absolute majority in the National Assembly (167/313).</li>
+            <li class="gold-bullet"><span class="highlight">PPP Victory in West:</span> Zulfikar Ali Bhutto's PPP won 86 seats (Punjab and Sindh), but zero in East Pakistan.</li>
+            <li class="red-bullet"><span class="highlight">Political Deadlock:</span> Ruling elites and Bhutto refused to transfer power to Mujib, postponing the March 3 assembly session, which sparked non-cooperation and the Liberation War.</li>
+        </ul>
+        <div class="footer">Compiled from Wikipedia Records</div>
+    </div>
+
+    <!-- 6. GENOCIDE, 1971 -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-red">HISTORICAL BRIEFING • 1971 LIBERATION WAR</div>
+            <h1>GENOCIDE, 1971</h1>
+            <p class="subtitle">The Systematic Mass Atrocities in East Pakistan</p>
+        </div>
+
+        <div class="stat-bar">
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-red);">~3 Million</span>
+                <span class="stat-label">Fatalities</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-gold);">10 Million</span>
+                <span class="stat-label">Refugees to India</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num" style="color: var(--accent-blue);">267 Days</span>
+                <span class="stat-label">25 Mar – 16 Dec 1971</span>
+            </div>
+        </div>
+
+        <div class="section-title">Key Elements of Atrocities</div>
+        <div class="callout-box callout-box-red">
+            <ul class="bullet-list">
+                <li class="red-bullet"><span class="highlight">Systematic Massacres:</span> Launched under Operation Searchlight on 25 March 1971, killing over 50,000 civilians in the first 3 days across major towns.</li>
+                <li class="red-bullet"><span class="highlight">Collaborator Militias:</span> Formation of Razakar, Al-Badr, and Al-Shams forces to terrorize communities and abduct targets.</li>
+                <li class="red-bullet"><span class="highlight">Decapitation of Intellectuals:</span> Al-Badr/Al-Shams forces executed a targeted plan to systematically abduct and kill top doctors, professors, journalists, and writers before surrender.</li>
+            </ul>
+        </div>
+        <div class="footer">Compiled from Banglapedia Records</div>
+    </div>
+
+    <!-- 7. HISTORICAL SLOGANS -->
+    <div class="document-card">
+        <div class="header-banner">
+            <div class="badge badge-gold">HISTORICAL SLOGANS • 1969–1971 MOVEMENT</div>
+            <h1>ঐতিহাসিক স্লোগানসমূহ</h1>
+            <p class="subtitle">হাতে লেখা তালিকা থেকে সংগৃহীত স্লোগান</p>
+        </div>
+
+        <div class="callout-box callout-box-gold">
+            <ol class="slogan-list">
+                <li>জয় বাংলা</li>
+                <li>তোমার আমার ঠিকানা পদ্মা মেঘনা যমুনা</li>
+                <li>বীর বাঙালী অস্ত্র ধর বাংলাদেশ স্বাধীন কর</li>
+                <li>ছয় দফা আমাদের দাবি, মানতে হবে মানতে হবে।</li>
+                <li>এগারো দফা মানতে হবে।</li>
+                <li>শেখ মুজিবের মুক্তি চাই।</li>
+                <li>আগরতলা ষড়যন্ত্র মামলা প্রত্যাহার কর</li>
+                <li>বন্দীদের মুক্তি চাই।</li>
+                <li>আইয়ুব খানের পতন চাই।</li>
+                <li>আইয়ুব মোনায়েম দুই ভাই, এক দড়িতে ফাঁসি চাই।</li>
+                <li>গোলটেবিল নয় রাজপথ রাজপথ</li>
+                <li>স্বৈরাচার নিপাত যাক, গণতন্ত্র মুক্তি পাক।</li>
+                <li>শোষকের হাত ভেঙে দাও, গুঁড়িয়ে দাও।</li>
+                <li>পূর্ব বাংলার শোষণ চলবে না।</li>
+                <li>ছাত্র শ্রমিক কৃষক জনতা, ঐক্য গড়ো, সংগ্রাম করো</li>
+                <li>জেলের তালা ভাঙবো শেখ মুজিবকে আনব</li>
+                <li>রক্তের বদলে রক্ত চাই।</li>
+                <li>রাজবন্দীদের মুক্তি চাই।</li>
+                <li>দাবি আমাদের একটাই স্বায়ত্তশাসন চাই</li>
+            </ol>
+        </div>
+        <div class="footer">Transcribed directly as written in handwritten notes</div>
+    </div>
+
+</div>
+
 </body>
 </html>
