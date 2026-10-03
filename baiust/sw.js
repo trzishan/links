@@ -4,7 +4,9 @@ const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './style.css',
-  './ged.html'
+  './spring26ranks.html',
+  './routine.html',
+  './bus.html'
 ];
 
 // Install Event

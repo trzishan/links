@@ -20,8 +20,8 @@ body{
     font-weight: bold;
     text-align: center;
     display: block;
-    background-color: green;
-    color: beige;
+    background-color: rgb(44, 151, 227);
+    color: rgb(9, 9, 8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
     text-decoration: none;
 }

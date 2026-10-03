@@ -1,223 +1,649 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAIUST Transport Schedule</title>
-    <style>
-        :root {
-            --primary: #1a531a;
-            --secondary: #38b000;
-            --accent: #008080;
-            --warning: #d9534f;
-            --light-bg: #f4f7f6;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transport Schedule (Students) | Spring 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg-primary: #0f172a;
+      --bg-secondary: #1e293b;
+      --bg-card: #1e293b;
+      --bg-card-hover: #334155;
+      --border-color: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-primary: #38bdf8;
+      --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      --gold: #f59e0b;
+      --silver: #94a3b8;
+      --bronze: #d97706;
+      --badge-bg: rgba(56, 189, 248, 0.12);
+      --badge-text: #38bdf8;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+      --table-header: #0f172a;
+      --time-badge-bg: rgba(56, 189, 248, 0.15);
+      --time-badge-text: #38bdf8;
+      --bus-tag-bg: rgba(239, 68, 68, 0.2);
+      --bus-tag-text: #f87171;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --accent-primary: #0284c7;
+      --accent-gradient: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      --gold: #d97706;
+      --silver: #64748b;
+      --bronze: #b45309;
+      --badge-bg: rgba(2, 132, 199, 0.1);
+      --badge-text: #0284c7;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      --table-header: #f8fafc;
+      --time-badge-bg: rgba(2, 132, 199, 0.1);
+      --time-badge-text: #0284c7;
+      --bus-tag-bg: rgba(220, 38, 38, 0.12);
+      --bus-tag-text: #dc2626;
+    }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--light-bg);
-            color: #333;
-            line-height: 1.5;
-            padding: 10px;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 50px;
+    }
 
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
 
-        .uni-name-bn { font-size: 1rem; margin-bottom: 5px; display: block; }
-        .uni-name-en { font-size: 1.1rem; font-weight: bold; line-height: 1.2; }
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
 
-        /* Meta Info */
-        .meta-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: #e9f5e9;
-            border-bottom: 1px solid #ddd;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+    .header-title h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
 
-        .badge {
-            background: var(--accent);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
+    .header-title p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-top: 4px;
+    }
 
-        .effective-date {
-            color: var(--warning);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
+    .theme-toggle-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow);
+    }
 
-        /* Table Responsiveness */
-        .table-container {
-            width: 100%;
-            overflow-x: auto; /* Allows horizontal swipe on mobile */
-            -webkit-overflow-scrolling: touch;
-        }
+    .theme-toggle-btn:hover {
+      border-color: var(--accent-primary);
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 600px; /* Ensures table doesn't squash too much */
-        }
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
 
-        th {
-            background: #f8f9fa;
-            text-align: left;
-            padding: 12px 15px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: #666;
-            border-bottom: 2px solid var(--secondary);
-        }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 18px 20px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
 
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            vertical-align: middle;
-        }
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--badge-bg);
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
 
-        .route-cell {
-            font-weight: bold;
-            color: var(--primary);
-            background: #fdfdfd;
-            position: sticky;
-            left: 0; /* Keeps route name visible while scrolling */
-            z-index: 1;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
-        }
+    .stat-info h3 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
 
-        .time-wrap { font-weight: 600; }
-        .bus-id {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: normal;
-        }
+    .stat-info p {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
 
-        /* Down Trip Section */
-        .down-trip {
-            padding: 20px;
-            background: #fff9f0;
-            border-top: 5px solid #f39c12;
-        }
+    /* Controls Bar */
+    .controls-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .down-trip h3 {
-            color: #e67e22;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+    }
 
-        .policy-item {
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
+    .search-box i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+    }
 
-        .highlight { color: var(--warning); font-weight: bold; }
-        .bg-highlight { background: #fff3cd; padding: 2px 4px; border-radius: 3px; }
+    .search-box input {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 10px 14px 10px 40px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+    }
 
-        /* Mobile Specific Adjustments */
-        @media (max-width: 600px) {
-            header { padding: 15px; }
-            .uni-name-en { font-size: 1rem; }
-            .meta-bar { flex-direction: column; align-items: flex-start; }
-            td, th { padding: 10px; }
-        }
-    </style>
+    .search-box input:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-toggle {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 10px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-toggle.active {
+      background: var(--accent-primary);
+      color: #ffffff;
+      border-color: var(--accent-primary);
+    }
+
+    /* Table Component */
+    .table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow-x: auto;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .section-head {
+      padding: 16px 20px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: var(--table-header);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text-main);
+    }
+
+    .section-head i {
+      color: var(--accent-primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: var(--table-header);
+      color: var(--text-muted);
+      font-weight: 700;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .route-name {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 0.95rem;
+    }
+
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--time-badge-bg);
+      color: var(--time-badge-text);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .bus-tag {
+      background: var(--bus-tag-bg);
+      color: var(--bus-tag-text);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+
+    .dash {
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* Cards Grid View */
+    .cards-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .card-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      font-size: 1.1rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header i {
+      color: var(--accent-primary);
+    }
+
+    .card-times {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Down Trip Banner */
+    .down-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-top: 24px;
+    }
+
+    .down-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .down-msg {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .highlight-time {
+      color: var(--gold);
+      font-weight: 800;
+      background: rgba(245, 158, 11, 0.15);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .bengali-banner {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .bengali-banner strong {
+      color: var(--text-main);
+    }
+
+    @media (max-width: 850px) {
+      .desktop-only { display: none; }
+    }
+  </style>
 </head>
-<body>
+<body data-theme="dark">
 
-<div class="container">
+  <div class="container">
     <header>
-        <span class="uni-name-bn">বাংলাদেশ আর্মি ইন্টারন্যাশনাল ইউনিভার্সিটি অফ সায়েন্স এন্ড টেকনোলজি</span>
-        <div class="uni-name-en">BAIUST, CUMILLA</div>
+      <div class="header-title">
+        <h1>Transport Schedule (Students)</h1>
+        <p>Effective from 04 October 2026 • Published: 1 October 2026</p>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggleBtn">
+        <i class="fa-solid fa-moon"></i> <span>Dark Mode</span>
+      </button>
     </header>
 
-    <div class="meta-bar">
-        <span class="badge">TRANSPORT SCHEDULE (STUDENTS)</span>
-        <span class="effective-date">Effective: 28 April 2026</span>
+    <!-- Stats Section -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-route"></i></div>
+        <div class="stat-info">
+          <h3>Active Routes</h3>
+          <p id="statRoutes">4 Routes</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-bus"></i></div>
+        <div class="stat-info">
+          <h3>Morning Departure</h3>
+          <p id="statFirstBus">7:40 AM</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div class="stat-info">
+          <h3>Return Departure</h3>
+          <p id="statReturnBus">12:15 PM</p>
+        </div>
+      </div>
     </div>
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Route</th>
-                    <th>Up Time 1</th>
-                    <th>Up Time 2</th>
-                    <th>Up Time 3</th>
-                    <th>Up Time 4</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="route-cell">Eidgah</td>
-                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[2XB]</span></div></td>
-                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[3XB]</span></div></td>
-                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[6XB]</span></div></td>
-                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[3XB]</span></div></td>
-                </tr>
-                <tr>
-                    <td class="route-cell">Police Line</td>
-                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[1XB]</span></div></td>
-                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[2XB]</span></div></td>
-                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[4XB]</span></div></td>
-                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[1XB]</span></div></td>
-                </tr>
-                <tr>
-                    <td class="route-cell">Tomsom Bridge</td>
-                    <td><div class="time-wrap">7:40 AM <span class="bus-id">[2XB]</span></div></td>
-                    <td><div class="time-wrap">8:10 AM <span class="bus-id">[3XB]</span></div></td>
-                    <td><div class="time-wrap">9:40 AM <span class="bus-id">[5XB]</span></div></td>
-                    <td><div class="time-wrap">11:10 AM <span class="bus-id">[2XB]</span></div></td>
-                </tr>
-                <tr>
-                    <td class="route-cell">Coatbari</td>
-                    <td>—</td>
-                    <td>—</td>
-                    <td><div class="time-wrap">9:50 AM <span class="bus-id">[1XB]</span></div></td>
-                    <td>—</td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Controls -->
+    <div class="controls-card">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchInput" placeholder="Search by route name or bus ID...">
+      </div>
+      <div class="view-toggle">
+        <button class="btn-toggle active" id="tableViewBtn"><i class="fa-solid fa-table-list"></i> Table View</button>
+        <button class="btn-toggle" id="cardViewBtn"><i class="fa-solid fa-border-all"></i> Cards View</button>
+      </div>
     </div>
 
-    <div class="down-trip">
-        <h3>Down Trip Policy</h3>
-        <div class="policy-item">• Starts at <span class="highlight">12:15 PM</span> (Once seats are occupied).</div>
-        <div class="policy-item">• Regular return ends at <span class="bg-highlight">3:40 PM</span>.</div>
-        <div class="policy-item">• Post-3:30 PM classes: Additional trips available (Selected students).</div>
+    <!-- Up Trip Table View -->
+    <div class="table-container" id="tableView">
+      <div class="section-head">
+        <i class="fa-solid fa-bus-simple"></i> Up Trip Schedule
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Route Name</th>
+            <th>Trip 1 (Early)</th>
+            <th>Trip 2 (Mid Morning)</th>
+            <th>Trip 3 (Late Morning)</th>
+          </tr>
+        </thead>
+        <tbody id="scheduleBody">
+          <!-- Rows dynamically rendered -->
+        </tbody>
+      </table>
     </div>
-</div>
 
+    <!-- Up Trip Cards View -->
+    <div class="cards-grid" id="cardView">
+      <!-- Cards dynamically rendered -->
+    </div>
+
+    <!-- Down Trip Instructions Card -->
+    <div class="down-card">
+      <div class="down-title">
+        <i class="fa-solid fa-circle-down"></i> Down Trip (Return Schedule)
+      </div>
+      <div class="down-msg">
+        Down trips will start at <span class="highlight-time">12:15 PM</span>. Each bus will depart once all seats are occupied. 
+        The regular return trip will end at <span class="highlight-time">3:40 PM</span>. For classes scheduled after 
+        <span class="highlight-time">3:30 PM</span>, additional trips will be available for selected students only.
+      </div>
+      <div class="bengali-banner">
+        <strong>ডাউন ট্রিপ নির্দেশনা:</strong> ডাউন ট্রিপ দুপুর <strong>১২:১৫ মিনিটে</strong> শুরু হবে। প্রতিটি বাস সিট পূর্ণ হওয়া মাত্র ছেড়ে যাবে। 
+        নিয়মিত ফেরার সার্ভিস <strong>৩:৪০ মিনিটে</strong> শেষ হবে। <strong>৩:৩০ মিনিটের</strong> পরের ক্লাসের জন্য অতিরিক্ত সময়ে বাসের ব্যবস্থা থাকবে।
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Bus Schedule Data Source
+    const scheduleData = [
+      {
+        route: "Thomson Bridge",
+        trips: [
+          { time: "7:40 AM", bus: "5xB" },
+          { time: "9:30 AM", bus: "6xB" },
+          { time: "11:10 AM", bus: "2xB" }
+        ]
+      },
+      {
+        route: "Hotel Noorihan",
+        trips: [
+          { time: "7:50 AM", bus: "1xB" },
+          { time: "9:40 AM", bus: "1xB" },
+          null
+        ]
+      },
+      {
+        route: "Eidgah",
+        trips: [
+          { time: "7:50 AM", bus: "7xB" },
+          { time: "9:40 AM", bus: "8xB" },
+          { time: "11:10 AM", bus: "3xB" }
+        ]
+      },
+      {
+        route: "Police Line",
+        trips: [
+          { time: "7:50 AM", bus: "2xB" },
+          { time: "9:40 AM", bus: "3xB" },
+          { time: "11:10 AM", bus: "1xB" }
+        ]
+      }
+    ];
+
+    function renderTimeBadge(trip) {
+      if (!trip) return '<span class="dash">---</span>';
+      return `<span class="time-badge"><i class="fa-regular fa-clock"></i> ${trip.time} <span class="bus-tag">[${trip.bus}]</span></span>`;
+    }
+
+    function renderTable(data) {
+      const tbody = document.getElementById('scheduleBody');
+      tbody.innerHTML = '';
+
+      if (data.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color:var(--text-muted); padding:20px;">No matching routes found</td></tr>`;
+        return;
+      }
+
+      data.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="route-name">${item.route}</td>
+          <td>${renderTimeBadge(item.trips[0])}</td>
+          <td>${renderTimeBadge(item.trips[1])}</td>
+          <td>${renderTimeBadge(item.trips[2])}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCards(data) {
+      const cardContainer = document.getElementById('cardView');
+      cardContainer.innerHTML = '';
+
+      if (data.length === 0) {
+        cardContainer.innerHTML = `<div style="grid-column: 1/-1; text-align:center; color:var(--text-muted); padding:20px;">No matching routes found</div>`;
+        return;
+      }
+
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card-item';
+        card.innerHTML = `
+          <div class="card-header">
+            <i class="fa-solid fa-location-dot"></i> ${item.route}
+          </div>
+          <div class="card-times">
+            <div><strong>Trip 1:</strong> ${renderTimeBadge(item.trips[0])}</div>
+            <div><strong>Trip 2:</strong> ${renderTimeBadge(item.trips[1])}</div>
+            <div><strong>Trip 3:</strong> ${renderTimeBadge(item.trips[2])}</div>
+          </div>
+        `;
+        cardContainer.appendChild(card);
+      });
+    }
+
+    function filterData(query) {
+      const q = query.toLowerCase();
+      const filtered = scheduleData.filter(item => {
+        const routeMatch = item.route.toLowerCase().includes(q);
+        const busMatch = item.trips.some(t => t && t.bus.toLowerCase().includes(q));
+        return routeMatch || busMatch;
+      });
+      renderTable(filtered);
+      renderCards(filtered);
+    }
+
+    // Theme Switcher
+    const themeBtn = document.getElementById('themeToggleBtn');
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.body.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.body.setAttribute('data-theme', newTheme);
+      themeBtn.innerHTML = newTheme === 'dark' 
+        ? '<i class="fa-solid fa-moon"></i> <span>Dark Mode</span>' 
+        : '<i class="fa-solid fa-sun"></i> <span>Light Mode</span>';
+    });
+
+    // View Switchers
+    const tableViewBtn = document.getElementById('tableViewBtn');
+    const cardViewBtn = document.getElementById('cardViewBtn');
+    const tableView = document.getElementById('tableView');
+    const cardView = document.getElementById('cardView');
+
+    tableViewBtn.addEventListener('click', () => {
+      tableViewBtn.classList.add('active');
+      cardViewBtn.classList.remove('active');
+      tableView.style.display = 'block';
+      cardView.style.display = 'none';
+    });
+
+    cardViewBtn.addEventListener('click', () => {
+      cardViewBtn.classList.add('active');
+      tableViewBtn.classList.remove('active');
+      tableView.style.display = 'none';
+      cardView.style.display = 'grid';
+    });
+
+    // Search Handler
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      filterData(e.target.value);
+    });
+
+    // Initial Render
+    renderTable(scheduleData);
+    renderCards(scheduleData);
+  </script>
 </body>
 </html>

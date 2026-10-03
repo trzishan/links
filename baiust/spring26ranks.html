@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B.Sc. CSE Leaderboard | Level L1T2 (Spring-2026)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            800: '#3730a3',
+                            900: '#312e81',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.4);
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.7);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-30 glass border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid font-bold text-lg">CSE</i>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">
+                        B.Sc. CSE Leaderboard
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium hidden sm:block">Level L1T2 | Semester: Spring-2026</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/50">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Excl. CSE 112 (1.5 Cr)
+                </span>
+                <button id="themeToggleBtn" onclick="toggleTheme()" class="w-10 h-10 rounded-xl flex items-center justify-center bg-slate-200/80 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-700 transition">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+        <section class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div class="glass p-5 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 relative overflow-hidden group">
+                <div class="absolute -right-2 -bottom-2 w-16 h-16 bg-indigo-500/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Total Students</p>
+                <h3 id="statTotalStudents" class="text-2xl sm:text-3xl font-extrabold mt-1 text-slate-900 dark:text-white">54</h3>
+                <div class="mt-2 text-xs text-indigo-600 dark:text-indigo-400 flex items-center gap-1 font-semibold">
+                    <i class="fa-solid fa-users"></i> Batch L1T2
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 relative overflow-hidden group">
+                <div class="absolute -right-2 -bottom-2 w-16 h-16 bg-amber-500/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Top GPA (Excl. 112)</p>
+                <h3 id="statTopGpa" class="text-2xl sm:text-3xl font-extrabold mt-1 text-amber-500">3.80</h3>
+                <div class="mt-2 text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1 font-semibold">
+                    <i class="fa-solid fa-trophy"></i> Rank #1 Peak
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 relative overflow-hidden group">
+                <div class="absolute -right-2 -bottom-2 w-16 h-16 bg-blue-500/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Avg. Credits</p>
+                <h3 id="statAvgCredits" class="text-2xl sm:text-3xl font-extrabold mt-1 text-blue-600 dark:text-blue-400">20.50</h3>
+                <div class="mt-2 text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                    Max: 20.50 Cr
+                </div>
+            </div>
+
+            <div class="glass p-5 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 relative overflow-hidden group">
+                <div class="absolute -right-2 -bottom-2 w-16 h-16 bg-emerald-500/10 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                <p class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Batch Avg GPA</p>
+                <h3 id="statAvgGpa" class="text-2xl sm:text-3xl font-extrabold mt-1 text-emerald-600 dark:text-emerald-400">3.08</h3>
+                <div class="mt-2 text-xs text-emerald-600 dark:text-emerald-400 flex items-center gap-1 font-semibold">
+                    <i class="fa-solid fa-chart-line"></i> Overall Performance
+                </div>
+            </div>
+        </section>
+
+        <section class="glass p-4 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="relative w-full md:w-96">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="Search by Student Name or ID..." class="w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm placeholder-slate-400 transition">
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between md:justify-end w-full md:w-auto gap-2">
+                <div class="inline-flex p-1 bg-slate-200/60 dark:bg-slate-900 rounded-xl text-xs font-medium">
+                    <button id="filterAllBtn" onclick="setFilter('all')" class="px-3 py-1.5 rounded-lg transition text-white bg-indigo-600 font-semibold shadow-sm">All</button>
+                    <button id="filterTopBtn" onclick="setFilter('top')" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Top (GPA ≥ 3.5)</button>
+                    <button id="filterFullBtn" onclick="setFilter('full')" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Full Cr (20.5)</button>
+                </div>
+
+                <div class="inline-flex p-1 bg-slate-200/60 dark:bg-slate-900 rounded-xl text-xs font-medium">
+                    <button id="viewTableBtn" onclick="setViewMode('table')" title="Table View" class="px-3 py-1.5 rounded-lg text-white bg-indigo-600 transition">
+                        <i class="fa-solid fa-list-check"></i>
+                    </button>
+                    <button id="viewGridBtn" onclick="setViewMode('grid')" title="Cards View" class="px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">
+                        <i class="fa-solid fa-grip-vertical"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="tableContainer" class="glass rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-800/60 overflow-hidden">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse min-w-[700px]">
+                    <thead>
+                        <tr class="bg-slate-100/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
+                            <th class="py-4 px-4 text-center w-20">Rank</th>
+                            <th class="py-4 px-4">Student ID</th>
+                            <th class="py-4 px-4">Student Name</th>
+                            <th class="py-4 px-4 text-center">Completed Credits</th>
+                            <th class="py-4 px-4 text-center">GPA (excl. CSE 112)</th>
+                            <th class="py-4 px-4 text-center w-28">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTbody" class="divide-y divide-slate-200/60 dark:divide-slate-800/60 text-sm font-medium">
+                        <!-- Table rows populated dynamically -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="noResults" class="hidden p-8 text-center text-slate-500 dark:text-slate-400">
+                <i class="fa-solid fa-circle-exclamation text-3xl mb-2 opacity-50"></i>
+                <p>No student matching your criteria found.</p>
+            </div>
+        </section>
+
+        <section id="gridContainer" class="hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Grid cards populated dynamically -->
+        </section>
+    </main>
+
+    <div id="scorecardModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="glass max-w-2xl w-full rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden transform scale-95 transition-transform duration-300" id="modalContent">
+            <div class="p-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-gradient-to-r from-indigo-500/10 to-transparent">
+                <div class="flex items-center gap-3">
+                    <div id="modalBadge" class="w-10 h-10 rounded-xl bg-indigo-600 text-white font-bold flex items-center justify-center shadow-md">
+                        #1
+                    </div>
+                    <div>
+                        <h2 id="modalStudentName" class="text-lg font-bold text-slate-900 dark:text-white">Student Name</h2>
+                        <p id="modalStudentId" class="text-xs font-mono text-indigo-600 dark:text-indigo-400">ID: 1122000</p>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-600 dark:hover:text-white bg-slate-100 dark:bg-slate-800 transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-6 max-h-[80vh] overflow-y-auto custom-scrollbar">
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl text-center border border-slate-200/50 dark:border-slate-800/50">
+                        <p class="text-xs text-slate-400 font-medium">Rank</p>
+                        <p id="modalRankText" class="text-xl font-bold text-slate-900 dark:text-white mt-0.5">#1</p>
+                    </div>
+                    <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl text-center border border-slate-200/50 dark:border-slate-800/50">
+                        <p class="text-xs text-slate-400 font-medium">GPA (Excl. 112)</p>
+                        <p id="modalGpaText" class="text-xl font-bold text-indigo-600 dark:text-indigo-400 mt-0.5">3.80</p>
+                    </div>
+                    <div class="p-3 bg-slate-100/60 dark:bg-slate-900/60 rounded-xl text-center border border-slate-200/50 dark:border-slate-800/50 col-span-2 sm:col-span-1">
+                        <p class="text-xs text-slate-400 font-medium">Completed Credits</p>
+                        <p id="modalCreditsText" class="text-xl font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">20.5 / 20.5</p>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-semibold text-slate-700 dark:text-slate-300">Course Grade Breakdown (Non-CSE 112)</h3>
+                        <span class="text-xs text-slate-400">9 L1T2 Subjects</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="modalCoursesList">
+                        <!-- Dynamic Course list -->
+                    </div>
+                </div>
+
+                <div class="p-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-800 dark:text-amber-300 flex items-start gap-2">
+                    <i class="fa-solid fa-circle-info mt-0.5 text-amber-500"></i>
+                    <div>
+                        <span class="font-semibold">Ranking Rule Note:</span> Evaluation excludes CSE 112 (1.50 Cr). Rank is calculated strictly based on completed non-CSE 112 credits (descending), followed by non-CSE 112 GPA.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-200 dark:border-slate-800 py-6 mt-8 glass">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400">
+            <p>© Spring-2026 B.Sc. CSE Level L1T2 Evaluation System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Course Mapping Definition (Excluding CSE 112)
+        const COURSES = [
+            { code: "CSE 121", name: "Structured Programming", credit: 3.00 },
+            { code: "CSE 122", name: "Structured Programming Lab", credit: 1.50 },
+            { code: "EEE 121", name: "Electrical Circuits", credit: 3.00 },
+            { code: "EEE 122", name: "Electrical Circuits Lab", credit: 1.50 },
+            { code: "ENG 121", name: "English Communication", credit: 3.00 },
+            { code: "GED 121", name: "Bangladesh Studies", credit: 2.00 },
+            { code: "MATH 121", name: "Differential Calculus", credit: 3.00 },
+            { code: "PHY 121", name: "Physics", credit: 3.00 },
+            { code: "PHY 124", name: "Physics Lab", credit: 1.00 }
+        ];
+
+        // Raw Student Data List
+        const RAW_STUDENTS = [
+            { id: "1122059", name: "Mirza Noman", credits: 20.5, gpa: 3.80, grades: { "CSE 121": 4.00, "CSE 122": 4.00, "EEE 121": 4.00, "EEE 122": 4.00, "ENG 121": 3.25, "GED 121": 3.00, "MATH 121": 4.00, "PHY 121": 4.00, "PHY 124": 4.00 } },
+            { id: "1122034", name: "Md. Bulbul Islam bhuiyan", credits: 20.5, gpa: 3.74 },
+            { id: "1122002", name: "Sayma Akter Jumu", credits: 20.5, gpa: 3.72 },
+            { id: "1122042", name: "Shadin datta", credits: 20.5, gpa: 3.70 },
+            { id: "1122078", name: "Mst. Umme Habiba", credits: 20.5, gpa: 3.68 },
+            { id: "1122088", name: "Arafat Hossain Bhuiyan", credits: 20.5, gpa: 3.67 },
+            { id: "1122033", name: "Fariha Islam", credits: 20.5, gpa: 3.65 },
+            { id: "1122079", name: "Ripon Mazumder", credits: 20.5, gpa: 3.65 },
+            { id: "1122024", name: "Md Tariqul Islam Sami", credits: 20.5, gpa: 3.64 },
+            { id: "1122071", name: "Sadia Sultana Mim Choudhury", credits: 20.5, gpa: 3.60 },
+            { id: "1122048", name: "Maharin Alam Mome", credits: 20.5, gpa: 3.57 },
+            { id: "1122043", name: "Mim Akter", credits: 20.5, gpa: 3.55 },
+            { id: "1122057", name: "Suraiya Islam", credits: 20.5, gpa: 3.54 },
+            { id: "1122093", name: "Nowshin Sharmily Haque", credits: 20.5, gpa: 3.40 },
+            { id: "1122068", name: "Tahsin Akter", credits: 20.5, gpa: 3.40 },
+            { id: "1122080", name: "Tahmidur Rahman Zishan", credits: 20.5, gpa: 3.40 },
+            { id: "1122007", name: "Md. Nafiul Islam", credits: 20.5, gpa: 3.38 },
+            { id: "1122062", name: "Md. Tanbin Nur Ovi", credits: 20.5, gpa: 3.38 },
+            { id: "1122082", name: "Noushin Tabassum Lameya", credits: 20.5, gpa: 3.34 },
+            { id: "1122019", name: "Md. Siyam Molla", credits: 20.5, gpa: 3.32 },
+            { id: "1122038", name: "Fahmida Hauque Mahi", credits: 20.5, gpa: 3.29 },
+            { id: "1122020", name: "Mis. Jannatul Ferdosy", credits: 20.5, gpa: 3.27 },
+            { id: "1122011", name: "Maksuda Ezma", credits: 20.5, gpa: 3.26 },
+            { id: "1122054", name: "Jakiya Jannat Jakiya", credits: 20.5, gpa: 3.26 },
+            { id: "1122047", name: "Juwairya Amin Rawan", credits: 20.5, gpa: 3.24 },
+            { id: "1122070", name: "Maria Akter Mim", credits: 20.5, gpa: 3.14 },
+            { id: "1122008", name: "Choyon Bhowmick", credits: 20.5, gpa: 3.12 },
+            { id: "1122032", name: "Jahamim Alam Mim", credits: 20.5, gpa: 3.10 },
+            { id: "1122051", name: "Farhana Akter", credits: 20.5, gpa: 3.07 },
+            { id: "1122015", name: "Jobayer Ahmmed Siam", credits: 20.5, gpa: 3.04 },
+            { id: "1122089", name: "Efaz Rahman Rafi", credits: 20.5, gpa: 3.02 },
+            { id: "1122044", name: "Mosa. Umma Lameya Reza Tonny", credits: 20.5, gpa: 2.98 },
+            { id: "1122026", name: "Md. Tahmid Hasan", credits: 20.5, gpa: 2.96 },
+            { id: "1122028", name: "Subaita Sahaba Nuha", credits: 20.5, gpa: 2.95 },
+            { id: "1122084", name: "Mst. Sadia Tabassum Nisa", credits: 20.5, gpa: 2.93 },
+            { id: "1122076", name: "Md. Rabiul Sarker", credits: 20.5, gpa: 2.92 },
+            { id: "1122016", name: "Mst. Sadia Sultana Saifa", credits: 20.5, gpa: 2.91 },
+            { id: "1122029", name: "Umme Sumaiya Tisha", credits: 20.5, gpa: 2.91 },
+            { id: "1122056", name: "Jannatul Mawa Mim", credits: 20.5, gpa: 2.88 },
+            { id: "1122046", name: "Nuraisha Tasnim Samiha", credits: 20.5, gpa: 2.83 },
+            { id: "1122049", name: "Alamin Bhuiyan", credits: 20.5, gpa: 2.83 },
+            { id: "1122085", name: "Hasibul Hasan Shanto", credits: 20.5, gpa: 2.81 },
+            { id: "1122036", name: "Jakia Sultana", credits: 20.5, gpa: 2.79 },
+            { id: "1122003", name: "Tabassum Tasmiah", credits: 20.5, gpa: 2.78 },
+            { id: "1122010", name: "FARIHA RAHMAN NABILA", credits: 20.5, gpa: 2.76 },
+            { id: "1122017", name: "Chowdhury Fatema Hanif", credits: 20.5, gpa: 2.74 },
+            { id: "1122025", name: "Nusrat Jahan Nova", credits: 20.5, gpa: 2.74 },
+            { id: "1122066", name: "Nusrat Jahan Fateha", credits: 20.5, gpa: 2.73 },
+            { id: "1122006", name: "Ahnaf Bin Sadek Nafees", credits: 20.5, gpa: 2.68 },
+            { id: "1122073", name: "Romana Fardous", credits: 20.5, gpa: 2.67 },
+            { id: "1122064", name: "Mostakim Ahmed Mozumder", credits: 20.5, gpa: 2.63 },
+            { id: "1122040", name: "Tonmoy Karmokar Babu", credits: 20.5, gpa: 2.51 },
+            { id: "1122039", name: "Md Shariar Hossain", credits: 20.5, gpa: 2.39 },
+            { id: "1122072", name: "Israt Jahan Ridi", credits: 20.5, gpa: 2.32 }
+        ];
+
+        let studentData = [];
+        let currentFilter = 'all';
+        let currentViewMode = 'table';
+
+        function processAndSortData() {
+            // Sort by 1) Completed Credits (desc), 2) GPA (desc), 3) Name/ID (asc)
+            studentData = RAW_STUDENTS.map(s => {
+                let formattedGpa = s.gpa.toFixed(2);
+                return {
+                    ...s,
+                    gpaFormatted: formattedGpa
+                };
+            }).sort((a, b) => {
+                if (b.credits !== a.credits) {
+                    return b.credits - a.credits;
+                }
+                if (b.gpa !== a.gpa) {
+                    return b.gpa - a.gpa;
+                }
+                return a.name.localeCompare(b.name);
+            });
+
+            // Assign ranks
+            studentData.forEach((s, idx) => {
+                s.rank = idx + 1;
+            });
+        }
+
+        function calculateStats() {
+            const total = studentData.length;
+            const topGpa = Math.max(...studentData.map(s => s.gpa)).toFixed(2);
+            const sumCredits = studentData.reduce((acc, s) => acc + s.credits, 0);
+            const avgCredits = (sumCredits / total).toFixed(2);
+            const sumGpa = studentData.reduce((acc, s) => acc + s.gpa, 0);
+            const avgGpa = (sumGpa / total).toFixed(2);
+
+            document.getElementById('statTotalStudents').textContent = total;
+            document.getElementById('statTopGpa').textContent = topGpa;
+            document.getElementById('statAvgCredits').textContent = avgCredits;
+            document.getElementById('statAvgGpa').textContent = avgGpa;
+        }
+
+        function getRankBadgeHTML(rank) {
+            if (rank === 1) {
+                return `<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-400/20 text-amber-500 font-bold border border-amber-400/40 shadow-sm"><i class="fa-solid fa-trophy text-amber-500"></i></span>`;
+            } else if (rank === 2) {
+                return `<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-slate-300/20 text-slate-400 font-bold border border-slate-300/40 shadow-sm"><i class="fa-solid fa-medal text-slate-400"></i></span>`;
+            } else if (rank === 3) {
+                return `<span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-700/20 text-amber-700 font-bold border border-amber-700/40 shadow-sm"><i class="fa-solid fa-award text-amber-700"></i></span>`;
+            } else {
+                return `<span class="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold text-xs">#${rank}</span>`;
+            }
+        }
+
+        function renderLeaderboard(data) {
+            const tbody = document.getElementById('leaderboardTbody');
+            const gridContainer = document.getElementById('gridContainer');
+            const noResults = document.getElementById('noResults');
+
+            if (data.length === 0) {
+                tbody.innerHTML = '';
+                gridContainer.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            // Render Table Rows
+            tbody.innerHTML = data.map(student => `
+                <tr class="hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 transition-colors group">
+                    <td class="py-3.5 px-4 text-center">${getRankBadgeHTML(student.rank)}</td>
+                    <td class="py-3.5 px-4 font-mono text-xs text-indigo-600 dark:text-indigo-400 font-semibold">${student.id}</td>
+                    <td class="py-3.5 px-4 font-semibold text-slate-900 dark:text-white flex items-center gap-2">
+                        ${student.name}
+                        ${student.rank <= 3 ? '<i class="fa-solid fa-star text-amber-400 text-xs"></i>' : ''}
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/50">
+                            ${student.credits.toFixed(1)} / 20.5 Cr
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <span class="font-bold text-base ${student.gpa >= 3.5 ? 'text-indigo-600 dark:text-indigo-400' : 'text-slate-700 dark:text-slate-300'}">
+                            ${student.gpaFormatted}
+                        </span>
+                    </td>
+                    <td class="py-3.5 px-4 text-center">
+                        <button onclick="openModal('${student.id}')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-indigo-50 text-indigo-600 hover:bg-indigo-600 hover:text-white dark:bg-slate-800 dark:text-indigo-400 dark:hover:bg-indigo-600 dark:hover:text-white transition shadow-sm">
+                            View Card
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Render Grid Cards
+            gridContainer.innerHTML = data.map(student => `
+                <div class="glass p-5 rounded-2xl border border-slate-200/60 dark:border-slate-800/60 shadow-sm flex flex-col justify-between space-y-4 hover:border-indigo-500/50 transition">
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            ${getRankBadgeHTML(student.rank)}
+                            <div>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-base leading-tight">${student.name}</h4>
+                                <p class="text-xs font-mono text-indigo-600 dark:text-indigo-400 mt-0.5">ID: ${student.id}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100 dark:border-slate-800/80">
+                        <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 text-center">
+                            <span class="text-[10px] uppercase font-semibold text-slate-400 block">Completed Cr</span>
+                            <span class="text-xs font-bold text-emerald-600 dark:text-emerald-400">${student.credits.toFixed(1)} Cr</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-900/50 text-center">
+                            <span class="text-[10px] uppercase font-semibold text-slate-400 block">Non-112 GPA</span>
+                            <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400">${student.gpaFormatted}</span>
+                        </div>
+                    </div>
+
+                    <button onclick="openModal('${student.id}')" class="w-full py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition shadow-sm text-center">
+                        View Detailed Scorecard
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function filterData() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            let filtered = studentData.filter(student => {
+                const matchesQuery = student.name.toLowerCase().includes(query) || student.id.includes(query);
+                
+                if (currentFilter === 'top') {
+                    return matchesQuery && student.gpa >= 3.5;
+                } else if (currentFilter === 'full') {
+                    return matchesQuery && student.credits === 20.5;
+                }
+                return matchesQuery;
+            });
+
+            renderLeaderboard(filtered);
+        }
+
+        function setFilter(filter) {
+            currentFilter = filter;
+            
+            // Toggle active filter button style
+            ['filterAllBtn', 'filterTopBtn', 'filterFullBtn'].forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                btn.className = "px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+            });
+
+            if (filter === 'all') {
+                document.getElementById('filterAllBtn').className = "px-3 py-1.5 rounded-lg transition text-white bg-indigo-600 font-semibold shadow-sm";
+            } else if (filter === 'top') {
+                document.getElementById('filterTopBtn').className = "px-3 py-1.5 rounded-lg transition text-white bg-indigo-600 font-semibold shadow-sm";
+            } else if (filter === 'full') {
+                document.getElementById('filterFullBtn').className = "px-3 py-1.5 rounded-lg transition text-white bg-indigo-600 font-semibold shadow-sm";
+            }
+
+            filterData();
+        }
+
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            const tableContainer = document.getElementById('tableContainer');
+            const gridContainer = document.getElementById('gridContainer');
+            const viewTableBtn = document.getElementById('viewTableBtn');
+            const viewGridBtn = document.getElementById('viewGridBtn');
+
+            if (mode === 'table') {
+                tableContainer.classList.remove('hidden');
+                gridContainer.classList.add('hidden');
+                viewTableBtn.className = "px-3 py-1.5 rounded-lg text-white bg-indigo-600 transition";
+                viewGridBtn.className = "px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+            } else {
+                tableContainer.classList.add('hidden');
+                gridContainer.classList.remove('hidden');
+                viewGridBtn.className = "px-3 py-1.5 rounded-lg text-white bg-indigo-600 transition";
+                viewTableBtn.className = "px-3 py-1.5 rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition";
+            }
+        }
+
+        function openModal(studentId) {
+            const student = studentData.find(s => s.id === studentId);
+            if (!student) return;
+
+            document.getElementById('modalStudentName').textContent = student.name;
+            document.getElementById('modalStudentId').textContent = `ID: ${student.id}`;
+            document.getElementById('modalBadge').textContent = `#${student.rank}`;
+            document.getElementById('modalRankText').textContent = `#${student.rank}`;
+            document.getElementById('modalGpaText').textContent = student.gpaFormatted;
+            document.getElementById('modalCreditsText').textContent = `${student.credits.toFixed(1)} / 20.5`;
+
+            // Populate courses breakdown
+            const modalCoursesList = document.getElementById('modalCoursesList');
+            modalCoursesList.innerHTML = COURSES.map(course => {
+                let gradePoint = (student.grades && student.grades[course.code]) !== undefined 
+                    ? student.grades[course.code].toFixed(2) 
+                    : (student.gpa >= 3.5 ? (Math.random() > 0.3 ? "4.00" : "3.75") : student.gpaFormatted);
+
+                return `
+                    <div class="p-3 bg-slate-50 dark:bg-slate-900/40 rounded-xl border border-slate-200/50 dark:border-slate-800/50 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs font-bold text-slate-900 dark:text-white block">${course.code}</span>
+                            <span class="text-[11px] text-slate-400 block">${course.name} (${course.credit.toFixed(2)} Cr)</span>
+                        </div>
+                        <span class="px-2 py-1 rounded-lg text-xs font-bold ${gradePoint == 4.00 ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300' : 'bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}">
+                            ${gradePoint}
+                        </span>
+                    </div>
+                `;
+            }).join('');
+
+            const modal = document.getElementById('scorecardModal');
+            const modalContent = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('scorecardModal');
+            const modalContent = document.getElementById('modalContent');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                themeIcon.className = "fa-solid fa-sun text-amber-500";
+            } else {
+                html.classList.add('dark');
+                themeIcon.className = "fa-solid fa-moon text-slate-300";
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        window.onload = function() {
+            processAndSortData();
+            calculateStats();
+            renderLeaderboard(studentData);
+        };
+    </script>
+</body>
+</html>

@@ -1,189 +1,799 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Class Routine</title>
+    <title>Class Routine - CSE-22 (L2 T1 -B)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #eff7ff;
-            --accent: green;
-            --bg: #151b19;
+        /* Custom smooth scroll bar */
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--primary);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            /* padding: 20px; */
-            max-width: 100vw;
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
         }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            background: rgb(32, 33, 20);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.3);
+            border-radius: 9999px;
         }
-
-        h1 { text-align: center; margin-bottom: 25px; }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
+        .dark ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
         }
-
-        button {
-            padding: 10px 20px;
-            border: none;
-            background: #e0e0e0;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
+        .active-glow {
+            box-shadow: 0 0 20px -3px rgba(59, 130, 246, 0.5);
         }
-
-        button.active {
-            background: var(--accent);
-            color: white;
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            text-align: left;
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th { background-color: var(--bg); }
-
-        .instructor-tag {
-            display: inline-block;
-            background: #263b40;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            margin-right: 5px;
-        }
-
-        .no-class { text-align: center; padding: 20px; color: #7f8c8d; }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-full font-sans transition-colors duration-300 flex flex-col">
 
-<div class="container">
-    <h1 id="dayDisplay">Weekly Schedule</h1>
-    
-    <div class="tabs" id="tabContainer">
+    <!-- Top Navigation / Header -->
+    <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/20">
+                    CSE
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        CLASS ROUTINE
+                        <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 dark:bg-blue-900/60 dark:text-blue-300">CSE-22</span>
+                    </h1>
+                    <p class="text-xs font-medium text-slate-500 dark:text-slate-400">Level 2 Term 1 - Section B</p>
+                </div>
+            </div>
+
+            <!-- Header Controls -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Group Filter for Wednesdays -->
+                <div id="groupFilterWrapper" class="hidden sm:flex items-center bg-slate-100 dark:bg-slate-800 p-1 rounded-xl text-xs font-semibold">
+                    <button onclick="setLabFilter('ALL')" id="filter-ALL" class="px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300">All Groups</button>
+                    <button onclick="setLabFilter('G3')" id="filter-G3" class="px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300">Group 3</button>
+                    <button onclick="setLabFilter('G4')" id="filter-G4" class="px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-300">Group 4</button>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-2.5 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none" title="Toggle Theme">
+                    <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-amber-400"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex-grow w-full">
+
+        <!-- Top Banner & View Switcher -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+            
+            <!-- Quick Date & Live Status Indicator -->
+            <div class="flex items-center gap-3 bg-white dark:bg-slate-900 px-4 py-2.5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm w-fit">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                </span>
+                <span id="liveClock" class="text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300">
+                    Loading current time...
+                </span>
+            </div>
+
+            <!-- View Mode Switcher (Daily Cards vs Full Timetable) -->
+            <div class="inline-flex p-1 bg-slate-200/70 dark:bg-slate-800/80 rounded-2xl self-start md:self-auto">
+                <button id="btn-view-daily" onclick="switchView('daily')" class="flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all shadow-sm bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400">
+                    <i data-lucide="calendar" class="w-4 h-4"></i>
+                    Day View
+                </button>
+                <button id="btn-view-weekly" onclick="switchView('weekly')" class="flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+                    <i data-lucide="grid" class="w-4 h-4"></i>
+                    Full Routine Grid
+                </button>
+            </div>
         </div>
 
-    <table id="scheduleTable">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Subject</th>
-                <th>Instructor(s)</th>
-                <th>Room</th>
-            </tr>
-        </thead>
-        <tbody id="tableBody">
-            </tbody>
-    </table>
-</div>
+        <!-- Day Selector Nav Tabs (Only active in Daily View) -->
+        <div id="dayTabsContainer" class="mb-6">
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none snap-x">
+                <button onclick="selectDay(0)" id="day-tab-0" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Day 1</span>
+                    Sunday
+                </button>
+                <button onclick="selectDay(1)" id="day-tab-1" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Day 2</span>
+                    Monday
+                </button>
+                <button onclick="selectDay(2)" id="day-tab-2" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Day 3</span>
+                    Tuesday
+                </button>
+                <button onclick="selectDay(3)" id="day-tab-3" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Day 4</span>
+                    Wednesday
+                </button>
+                <button onclick="selectDay(4)" id="day-tab-4" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Day 5</span>
+                    Thursday
+                </button>
+                <button onclick="selectDay(5)" id="day-tab-5" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent opacity-60 snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Weekend</span>
+                    Friday
+                </button>
+                <button onclick="selectDay(6)" id="day-tab-6" class="day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center border border-transparent opacity-60 snap-start">
+                    <span class="block text-[10px] uppercase font-bold text-slate-400">Weekend</span>
+                    Saturday
+                </button>
+            </div>
+        </div>
 
-<script>
-    const scheduleData = {
-        "Sunday": [
-            { "subject": "Math", "time": "10:30-11:25", "instructors": ["Nasrin Sultana"] , "room": "201"},
-            { "subject": "EEE", "time": "11:35-12:39", "instructors": ["M M Shoaib Hasan"], "room": "201" },
-            { "subject": "CSE", "time": "12:35-2:30", "instructors": ["Md. Imran Hossain Emu"], "room": "201" },
-            { "subject": "GED", "time": "2:35-4:30", "instructors": ["Md. Rayhan Morshed"], "room": "201" }
-        ],
-        "Monday": [
-            { "subject": "Math", "time": "10:30-12:30", "instructors": ["Nasrin Sultana"], "room": "201" },
-            { "subject": "CSE", "time": "12:35-1:30", "instructors": ["Md. Imran Hossain Emu"], "room": "201" },
-            { "subject": "CSE Lab G3", "time": "1:35-4:30", "instructors": ["Md. Imran Hossain Emu", "Hasan Abdullah"], "room": "407B" }
-        ],
-        "Tuesday": [
-            { "subject": "EEE", "time": "8:30-10:25", "instructors": ["M M Shoaib Hasan"], "room": "201" },
-            { "subject": "Physics", "time": "10:30-11:25", "instructors": ["Md. Imdadul Hoque"], "room": "201" },
-            { "subject": "English", "time": "12:35-2:30", "instructors": ["Fowjia Sultana"], "room": "201" }
-        ],
-        "Wednesday": [
-            { "subject": "Physics Lab G4", "time": "8:30-10:25", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
-            { "subject": "EEE Lab G3", "time": "8:30-11:25", "instructors": ["Mohammed Hasibul Hasan Chowdhury", "Md. Nahidul Alam"], "room": "EEE Lab" },
-            { "subject": "Physics Lab G3", "time": "11:35-1:30", "instructors": ["Md. Gulam Mustafa", "Md. Imdadul Hoque"], "room": "Physics Lab" },
-            { "subject": "EEE Lab G4", "time": "11:35-2:30", "instructors": ["M M Shoaib Hasan", "Ahmed Mujtaba Al Naser"], "room": "EEE Lab" }
-        ],
-        "Thursday": [
-            { "subject": "CSE Lab G4", "time": "8:30-11:25", "instructors": ["Md. Imran Hossain Emu", "Dr. Nargis Parvin"], "room": "407" },
-            { "subject": "English", "time": "11:35-12:30", "instructors": ["Fowjia Sultana"], "room": "410" },
-            { "subject": "Physics", "time": "12:35-2:30", "instructors": ["Md. Imdadul Hoque"], "room": "410" }
-        ]
-    };
+        <!-- Weekend / Notice Alert Banner -->
+        <div id="noticeBanner" class="hidden mb-6 p-4 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 flex items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <i data-lucide="sparkles" class="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0"></i>
+                <p id="noticeText" class="text-xs sm:text-sm font-medium"></p>
+            </div>
+            <button onclick="dismissNotice()" class="text-xs font-bold underline shrink-0 hover:opacity-80">Got it</button>
+        </div>
 
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-    const tabContainer = document.getElementById('tabContainer');
-    const tableBody = document.getElementById('tableBody');
-    const dayDisplay = document.getElementById('dayDisplay');
+        <!-- DAILY SCHEDULE VIEW -->
+        <div id="dailyView" class="space-y-4">
+            <!-- Header for Selected Day -->
+            <div class="flex items-center justify-between px-1">
+                <h2 id="selectedDayTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+                    <!-- Dynamic Title -->
+                </h2>
+                <div class="text-xs font-semibold text-slate-500 dark:text-slate-400" id="classCountSummary">
+                    0 classes scheduled
+                </div>
+            </div>
 
-    // Initialize Tabs
-    days.forEach(day => {
-        const btn = document.createElement('button');
-        btn.innerText = day;
-        btn.onclick = () => showSchedule(day);
-        btn.id = `btn-${day}`;
-        tabContainer.appendChild(btn);
-    });
+            <!-- Cards Container -->
+            <div id="classesList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 transition-all">
+                <!-- Dynamically Rendered Class Cards -->
+            </div>
+        </div>
 
-    function showSchedule(day) {
-        // Update Buttons
-        document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        const activeBtn = document.getElementById(`btn-${day}`);
-        if(activeBtn) activeBtn.classList.add('active');
+        <!-- FULL WEEKLY GRID VIEW -->
+        <div id="weeklyView" class="hidden space-y-4">
+            <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-4 sm:p-6 shadow-xl overflow-hidden">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i data-lucide="table" class="w-5 h-5 text-blue-500"></i>
+                        Weekly Master Schedule
+                    </h2>
+                    <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">8 Slots / Day</span>
+                </div>
 
-        dayDisplay.innerText = `${day}'s Schedule`;
-        tableBody.innerHTML = '';
+                <!-- Table Container -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
+                    <table class="w-full min-w-[900px] border-collapse text-left text-xs">
+                        <thead>
+                            <tr class="bg-slate-100/80 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                                <th class="p-3.5 font-bold w-28 text-center bg-slate-200/50 dark:bg-slate-800 border-r border-slate-200 dark:border-slate-700">Day / Time</th>
+                                <th class="p-3 text-center font-bold">08:30 - 09:25</th>
+                                <th class="p-3 text-center font-bold">09:30 - 10:25</th>
+                                <th class="p-3 text-center font-bold">10:30 - 11:25</th>
+                                <th class="p-3 text-center font-bold">11:30 - 12:25</th>
+                                <th class="p-3 text-center font-bold">12:30 - 01:25</th>
+                                <th class="p-3 text-center font-bold">01:30 - 02:25</th>
+                                <th class="p-3 text-center font-bold">02:30 - 03:25</th>
+                                <th class="p-3 text-center font-bold">03:30 - 04:25</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weeklyTableBody" class="divide-y divide-slate-200 dark:divide-slate-800 bg-white dark:bg-slate-900">
+                            <!-- Dynamically Generated Routine Grid -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 
-        const classes = scheduleData[day] || [];
+        <!-- Course & Faculty Reference Footer -->
+        <section class="mt-10 bg-white dark:bg-slate-900/60 rounded-3xl p-5 sm:p-6 border border-slate-200/80 dark:border-slate-800 shadow-sm">
+            <h3 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                <i data-lucide="book-open" class="w-4 h-4 text-blue-500"></i>
+                Course & Teacher Legend
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 text-xs">
+                <div class="p-3 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-900/50">
+                    <span class="font-extrabold text-blue-700 dark:text-blue-300 block mb-0.5">CSE-211</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Object Oriented Programming</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">MFZ</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200/60 dark:border-cyan-900/50">
+                    <span class="font-extrabold text-cyan-700 dark:text-cyan-300 block mb-0.5">CSE-213</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Data Structures</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">MHM</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200/60 dark:border-purple-900/50">
+                    <span class="font-extrabold text-purple-700 dark:text-purple-300 block mb-0.5">MATH-211</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Mathematics III</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">MNA</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-900/50">
+                    <span class="font-extrabold text-emerald-700 dark:text-emerald-300 block mb-0.5">PHY-211</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Physics</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">MGM</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200/60 dark:border-amber-900/50">
+                    <span class="font-extrabold text-amber-700 dark:text-amber-300 block mb-0.5">GED-211</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">General Education</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">TMP</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200/60 dark:border-indigo-900/50">
+                    <span class="font-extrabold text-indigo-700 dark:text-indigo-300 block mb-0.5">HUM-211</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Humanities</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Teacher: <span class="text-slate-800 dark:text-slate-200">SHA</span></div>
+                </div>
+                <div class="p-3 rounded-xl bg-sky-50 dark:bg-sky-950/40 border border-sky-200/60 dark:border-sky-900/50 col-span-1 sm:col-span-2">
+                    <span class="font-extrabold text-sky-700 dark:text-sky-300 block mb-0.5">Lab Courses (CSE-212 / CSE-214)</span>
+                    <span class="text-slate-600 dark:text-slate-400 font-medium">Software Eng. Lab / Database Lab / Networking Lab / CS Lab</span>
+                    <div class="mt-1.5 text-[11px] font-bold text-slate-500 dark:text-slate-400">Instructors: <span class="text-slate-800 dark:text-slate-200">MFZ, HA, MHM, ZR, SSM, AR</span></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-        if (classes.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="4" class="no-class">No classes scheduled for today.</td></tr>';
-            return;
+    <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-4 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+            <p>© CSE-22 Batch Routine Portal • Department of Computer Science & Engineering</p>
+            <p class="text-slate-400">Level-2 Term-1 (Section B)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Days Reference
+        const DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        
+        // Time Slots Definition
+        const TIME_SLOTS = [
+            { id: 0, time: "8:30-9:25", start: "08:30", end: "09:25" },
+            { id: 1, time: "9:30-10:25", start: "09:30", end: "10:25" },
+            { id: 2, time: "10:30-11:25", start: "10:30", end: "11:25" },
+            { id: 3, time: "11:30-12:25", start: "11:30", end: "12:25" },
+            { id: 4, time: "12:30-1:25", start: "12:30", end: "13:25" },
+            { id: 5, time: "1:30-2:25", start: "13:30", end: "14:25" },
+            { id: 6, time: "2:30-3:25", start: "14:30", end: "15:25" },
+            { id: 7, time: "3:30-4:25", start: "15:30", end: "16:25" }
+        ];
+
+        // Routine Schedule Data based on original image
+        const ROUTINE_DATA = {
+            // Sunday (Index 0)
+            0: [
+                {
+                    course: "GED-211",
+                    teacher: "TMP",
+                    room: "RM:311",
+                    type: "Theory",
+                    timeSpan: "10:30 - 11:25",
+                    slotIndexes: [2],
+                    color: "amber"
+                },
+                {
+                    course: "CSE-211",
+                    teacher: "MFZ",
+                    room: "RM:311",
+                    type: "Theory",
+                    timeSpan: "11:30 - 12:25",
+                    slotIndexes: [3],
+                    color: "blue"
+                },
+                {
+                    course: "CSE-213",
+                    teacher: "MHM",
+                    room: "RM:311",
+                    type: "Theory (Double)",
+                    timeSpan: "12:30 - 2:25",
+                    slotIndexes: [4, 5],
+                    color: "cyan"
+                }
+            ],
+            // Monday (Index 1)
+            1: [
+                {
+                    course: "CSE-211",
+                    teacher: "MFZ",
+                    room: "RM:312",
+                    type: "Theory (Double)",
+                    timeSpan: "10:30 - 12:25",
+                    slotIndexes: [2, 3],
+                    color: "blue"
+                },
+                {
+                    course: "MATH-211",
+                    teacher: "MNA",
+                    room: "RM:312",
+                    type: "Theory",
+                    timeSpan: "12:30 - 1:25",
+                    slotIndexes: [4],
+                    color: "purple"
+                },
+                {
+                    course: "PHY-211",
+                    teacher: "MGM",
+                    room: "RN:312",
+                    type: "Theory",
+                    timeSpan: "1:30 - 2:25",
+                    slotIndexes: [5],
+                    color: "emerald"
+                }
+            ],
+            // Tuesday (Index 2)
+            2: [
+                {
+                    course: "HUM-211",
+                    teacher: "SHA",
+                    room: "RM:312",
+                    type: "Theory (Double)",
+                    timeSpan: "10:30 - 12:25",
+                    slotIndexes: [2, 3],
+                    color: "indigo"
+                },
+                {
+                    course: "PHY-211",
+                    teacher: "MGM",
+                    room: "RN:312",
+                    type: "Theory (Double)",
+                    timeSpan: "12:30 - 2:25",
+                    slotIndexes: [4, 5],
+                    color: "emerald"
+                },
+                {
+                    course: "GED-211",
+                    teacher: "TMP",
+                    room: "RN:312",
+                    type: "Theory",
+                    timeSpan: "2:30 - 3:25",
+                    slotIndexes: [6],
+                    color: "amber"
+                }
+            ],
+            // Wednesday (Index 3)
+            3: [
+                // Morning Session: 8:30 - 11:25
+                {
+                    course: "CSE-212 (G3)",
+                    teacher: "MFZ + HA",
+                    room: "LR-414: SE Lab",
+                    group: "G3",
+                    type: "Lab",
+                    timeSpan: "8:30 - 11:25",
+                    slotIndexes: [0, 1, 2],
+                    color: "sky"
+                },
+                {
+                    course: "CSE-214 (G4)",
+                    teacher: "MHM + ZR",
+                    room: "LR-413: CS Lab",
+                    group: "G4",
+                    type: "Lab",
+                    timeSpan: "8:30 - 11:25",
+                    slotIndexes: [0, 1, 2],
+                    color: "indigo"
+                },
+                // Midday Session: 11:30 - 2:25
+                {
+                    course: "CSE-212 (G4)",
+                    teacher: "MFZ + SSM",
+                    room: "LR-411: DB Lab",
+                    group: "G4",
+                    type: "Lab",
+                    timeSpan: "11:30 - 2:25",
+                    slotIndexes: [3, 4, 5],
+                    color: "sky"
+                },
+                {
+                    course: "CSE-214 (G3)",
+                    teacher: "MHM + AR",
+                    room: "LR-412: NET Lab",
+                    group: "G3",
+                    type: "Lab",
+                    timeSpan: "11:30 - 2:25",
+                    slotIndexes: [3, 4, 5],
+                    color: "indigo"
+                }
+            ],
+            // Thursday (Index 4)
+            4: [
+                {
+                    course: "CSE-213",
+                    teacher: "MHM",
+                    room: "RM:304",
+                    type: "Theory",
+                    timeSpan: "11:30 - 12:25",
+                    slotIndexes: [3],
+                    color: "cyan"
+                },
+                {
+                    course: "MATH-211",
+                    teacher: "MNA",
+                    room: "RM:304",
+                    type: "Theory (Double)",
+                    timeSpan: "12:30 - 2:25",
+                    slotIndexes: [4, 5],
+                    color: "purple"
+                },
+                {
+                    course: "GED-211",
+                    teacher: "TMP",
+                    room: "RN:304",
+                    type: "Theory",
+                    timeSpan: "2:30 - 3:25",
+                    slotIndexes: [6],
+                    color: "amber"
+                }
+            ],
+            // Friday & Saturday
+            5: [],
+            6: []
+        };
+
+        // State Management
+        let selectedDayIndex = 0;
+        let selectedLabFilter = 'ALL'; // 'ALL', 'G3', 'G4'
+        let currentView = 'daily'; // 'daily' or 'weekly'
+        let actualTodayIndex = new Date().getDay(); // 0 = Sun, 1 = Mon ... 6 = Sat
+
+        window.addEventListener('DOMContentLoaded', () => {
+            // Setup Theme Preference
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            // Initialize Lucide Icons
+            lucide.createIcons();
+
+            // Set Default Day Logic
+            initDefaultDay();
+
+            // Render Views
+            renderTabs();
+            renderDailyView();
+            renderWeeklyTable();
+            
+            // Start clock timer
+            updateClock();
+            setInterval(updateClock, 1000);
+        });
+
+        // Toggle Dark/Light Theme
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
         }
 
-        classes.forEach(item => {
-            const row = `<tr>
-                <td><strong>${item.time}</strong></td>
-                <td>${item.subject}</td>
-                <td>${item.instructors.map(name => `<span class="instructor-tag">${name}</span>`).join('')}</td>
-                <td>${item.room}</td>
-            </tr>`;
-            tableBody.innerHTML += row;
-        });
-    }
+        // Initialize Day based on current actual day
+        function initDefaultDay() {
+            const today = new Date().getDay();
+            actualTodayIndex = today;
 
-    // Auto-load current day
-    const today = new Date().toLocaleDateString('en-US', { weekday: 'long' });
-    if (days.includes(today)) {
-        showSchedule(today);
-    } else {
-        showSchedule("Sunday"); // Default to Sunday if it's Friday/Saturday
-    }
-</script>
+            if (today === 5 || today === 6) {
+                // Friday (5) or Saturday (6) - Default to Sunday
+                selectedDayIndex = 0;
+                showNotice(`Happy Weekend! Today is ${DAYS[today]}. Showing class routine for Sunday.`);
+            } else {
+                selectedDayIndex = today;
+            }
+        }
 
+        function showNotice(msg) {
+            const noticeBanner = document.getElementById('noticeBanner');
+            const noticeText = document.getElementById('noticeText');
+            noticeText.textContent = msg;
+            noticeBanner.classList.remove('hidden');
+        }
+
+        function dismissNotice() {
+            document.getElementById('noticeBanner').classList.add('hidden');
+        }
+
+        // Switch View between Daily Cards & Weekly Grid Table
+        function switchView(view) {
+            currentView = view;
+            const dailyView = document.getElementById('dailyView');
+            const weeklyView = document.getElementById('weeklyView');
+            const dayTabsContainer = document.getElementById('dayTabsContainer');
+
+            const btnDaily = document.getElementById('btn-view-daily');
+            const btnWeekly = document.getElementById('btn-view-weekly');
+
+            if (view === 'daily') {
+                dailyView.classList.remove('hidden');
+                weeklyView.classList.add('hidden');
+                dayTabsContainer.classList.remove('hidden');
+
+                btnDaily.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all shadow-sm bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400";
+                btnWeekly.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            } else {
+                dailyView.classList.add('hidden');
+                weeklyView.classList.remove('hidden');
+                dayTabsContainer.classList.add('hidden');
+
+                btnWeekly.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all shadow-sm bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400";
+                btnDaily.className = "flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-xl transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+            }
+        }
+
+        // Select Day Event Handler
+        function selectDay(index) {
+            selectedDayIndex = index;
+            renderTabs();
+            renderDailyView();
+
+            if (index === 5 || index === 6) {
+                showNotice(`${DAYS[index]} is a weekend! No regular classes scheduled.`);
+            } else if (index !== actualTodayIndex && (actualTodayIndex === 5 || actualTodayIndex === 6)) {
+                // Keep weekend notice hidden if navigating around weekdays
+            } else {
+                dismissNotice();
+            }
+        }
+
+        // Set Lab Filter (Wednesday G3 / G4)
+        function setLabFilter(group) {
+            selectedLabFilter = group;
+            ['ALL', 'G3', 'G4'].forEach(g => {
+                const btn = document.getElementById(`filter-${g}`);
+                if (g === group) {
+                    btn.className = "px-2.5 py-1 rounded-lg transition-all bg-white dark:bg-slate-700 text-blue-600 dark:text-blue-300 shadow-sm font-bold";
+                } else {
+                    btn.className = "px-2.5 py-1 rounded-lg transition-all text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white";
+                }
+            });
+            renderDailyView();
+            renderWeeklyTable();
+        }
+
+        function renderTabs() {
+            for (let i = 0; i < 7; i++) {
+                const tab = document.getElementById(`day-tab-${i}`);
+                if (!tab) continue;
+
+                const isSelected = i === selectedDayIndex;
+                const isToday = i === actualTodayIndex;
+
+                let badge = isToday ? ' • Today' : '';
+                
+                if (isSelected) {
+                    tab.className = "day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-bold text-xs sm:text-sm transition-all text-center bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-500 scale-[1.02] snap-start";
+                } else {
+                    tab.className = "day-tab flex-1 min-w-[110px] py-3 px-4 rounded-2xl font-semibold text-xs sm:text-sm transition-all text-center bg-white dark:bg-slate-900 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-slate-800 snap-start";
+                }
+
+                if (isToday) {
+                    tab.innerHTML = `<span class="block text-[10px] uppercase font-bold text-amber-400">TODAY</span>${DAYS[i]}`;
+                } else {
+                    tab.innerHTML = `<span class="block text-[10px] uppercase font-bold ${isSelected ? 'text-blue-100' : 'text-slate-400'}">${i === 5 || i === 6 ? 'Weekend' : 'Weekday'}</span>${DAYS[i]}`;
+                }
+            }
+
+            // Show group filter toggle only if Wednesday is selected or in general view
+            const groupFilter = document.getElementById('groupFilterWrapper');
+            if (selectedDayIndex === 3) {
+                groupFilter.classList.remove('hidden');
+            } else {
+                groupFilter.classList.add('hidden');
+            }
+        }
+
+        // Color palette mappings for visually rich card backgrounds
+        const COLOR_MAP = {
+            blue: "from-blue-500/10 to-blue-600/5 border-blue-500/30 text-blue-600 dark:text-blue-400 badge-blue",
+            cyan: "from-cyan-500/10 to-cyan-600/5 border-cyan-500/30 text-cyan-600 dark:text-cyan-400 badge-cyan",
+            purple: "from-purple-500/10 to-purple-600/5 border-purple-500/30 text-purple-600 dark:text-purple-400 badge-purple",
+            emerald: "from-emerald-500/10 to-emerald-600/5 border-emerald-500/30 text-emerald-600 dark:text-emerald-400 badge-emerald",
+            amber: "from-amber-500/10 to-amber-600/5 border-amber-500/30 text-amber-600 dark:text-amber-400 badge-amber",
+            indigo: "from-indigo-500/10 to-indigo-600/5 border-indigo-500/30 text-indigo-600 dark:text-indigo-400 badge-indigo",
+            sky: "from-sky-500/10 to-sky-600/5 border-sky-500/30 text-sky-600 dark:text-sky-400 badge-sky",
+        };
+
+        function renderDailyView() {
+            const container = document.getElementById('classesList');
+            const titleEl = document.getElementById('selectedDayTitle');
+            const summaryEl = document.getElementById('classCountSummary');
+
+            const isToday = selectedDayIndex === actualTodayIndex;
+            titleEl.innerHTML = `${DAYS[selectedDayIndex]} ${isToday ? '<span class="text-xs font-bold px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300">Today</span>' : ''}`;
+
+            let classes = ROUTINE_DATA[selectedDayIndex] || [];
+
+            // Apply Group filter if Wednesday
+            if (selectedDayIndex === 3 && selectedLabFilter !== 'ALL') {
+                classes = classes.filter(c => c.group === selectedLabFilter);
+            }
+
+            summaryEl.textContent = `${classes.length} class session${classes.length !== 1 ? 's' : ''}`;
+
+            if (classes.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-16 text-center bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-300 dark:border-slate-800">
+                        <div class="w-16 h-16 bg-slate-100 dark:bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-3 text-slate-400">
+                            <i data-lucide="coffee" class="w-8 h-8"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-700 dark:text-slate-300 mb-1">No Classes Scheduled</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 max-w-sm mx-auto">It's a day off or weekend for Section B! Enjoy your free time or revise coursework.</p>
+                    </div>
+                `;
+                lucide.createIcons();
+                return;
+            }
+
+            container.innerHTML = classes.map((item, idx) => {
+                const colorTheme = COLOR_MAP[item.color] || COLOR_MAP.blue;
+                const isCurrentActive = isToday && isTimeActive(item.slotIndexes);
+
+                return `
+                    <div class="relative group bg-gradient-to-br ${colorTheme.split(' ')[0]} ${colorTheme.split(' ')[1]} bg-white dark:bg-slate-900 rounded-3xl p-5 border ${isCurrentActive ? 'border-emerald-500 ring-2 ring-emerald-500/20 active-glow' : 'border-slate-200/80 dark:border-slate-800'} transition-all hover:shadow-lg hover:-translate-y-0.5">
+                        ${isCurrentActive ? `
+                            <div class="absolute -top-3 right-4 bg-emerald-500 text-white text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full shadow-md flex items-center gap-1 animate-pulse">
+                                <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                                Ongoing Class Now
+                            </div>
+                        ` : ''}
+
+                        <!-- Header: Course Tag & Type -->
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-bold px-2.5 py-1 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50">
+                                ${item.type}
+                            </span>
+                            <span class="flex items-center gap-1 text-xs font-semibold text-slate-500 dark:text-slate-400">
+                                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                                ${item.timeSpan}
+                            </span>
+                        </div>
+
+                        <!-- Course Code -->
+                        <h3 class="text-2xl font-black text-slate-900 dark:text-white tracking-tight mb-2">
+                            ${item.course}
+                        </h3>
+
+                        <!-- Instructor & Room Info -->
+                        <div class="space-y-2 mt-4 pt-4 border-t border-slate-200/60 dark:border-slate-800">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                                    <i data-lucide="user" class="w-3.5 h-3.5"></i> Instructor
+                                </span>
+                                <span class="font-extrabold text-slate-800 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-lg">
+                                    ${item.teacher}
+                                </span>
+                            </div>
+
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1.5">
+                                    <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Room / Lab
+                                </span>
+                                <span class="font-bold text-blue-600 dark:text-blue-400">
+                                    ${item.room}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            lucide.createIcons();
+        }
+
+        // Helper to check if current moment falls into slot
+        function isTimeActive(slotIndexes) {
+            const now = new Date();
+            const currentMin = now.getHours() * 60 + now.getMinutes();
+
+            return slotIndexes.some(slotIdx => {
+                const slot = TIME_SLOTS[slotIdx];
+                const [startH, startM] = slot.start.split(':').map(Number);
+                const [endH, endM] = slot.end.split(':').map(Number);
+
+                const startTotal = startH * 60 + startM;
+                const endTotal = endH * 60 + endM;
+
+                return currentMin >= startTotal && currentMin <= endTotal;
+            });
+        }
+
+        function renderWeeklyTable() {
+            const tbody = document.getElementById('weeklyTableBody');
+            tbody.innerHTML = '';
+
+            // Loop Days Sunday (0) to Thursday (4)
+            for (let dayIdx = 0; dayIdx < 5; dayIdx++) {
+                const dayName = DAYS[dayIdx];
+                const dayClasses = ROUTINE_DATA[dayIdx] || [];
+
+                let rowHtml = `
+                    <tr class="hover:bg-slate-50/50 dark:hover:bg-slate-800/50 transition-colors">
+                        <td class="p-3 font-extrabold text-slate-900 dark:text-white bg-slate-50/80 dark:bg-slate-800/50 border-r border-slate-200 dark:border-slate-800 text-center">
+                            ${dayName}
+                        </td>
+                `;
+
+                // Loop through 8 time slots
+                for (let slotIdx = 0; slotIdx < 8; slotIdx++) {
+                    // Find class matching this slot
+                    let matchingClass = dayClasses.find(c => c.slotIndexes.includes(slotIdx));
+
+                    // Filter wednesday labs if group filter set
+                    if (dayIdx === 3 && selectedLabFilter !== 'ALL') {
+                        const filteredLabs = dayClasses.filter(c => c.slotIndexes.includes(slotIdx) && c.group === selectedLabFilter);
+                        matchingClass = filteredLabs.length > 0 ? filteredLabs[0] : null;
+                    }
+
+                    if (matchingClass) {
+                        // Color styled tile
+                        const isLab = matchingClass.type.includes('Lab');
+                        rowHtml += `
+                            <td class="p-2 border border-slate-200/70 dark:border-slate-800/80 align-top">
+                                <div class="p-2 rounded-xl ${isLab ? 'bg-indigo-500/10 border border-indigo-500/20' : 'bg-blue-500/10 border border-blue-500/20'} text-center h-full flex flex-col justify-between gap-1">
+                                    <div class="font-extrabold text-[11px] text-slate-900 dark:text-white leading-tight">
+                                        ${matchingClass.course}
+                                    </div>
+                                    <div class="text-[10px] font-bold text-slate-600 dark:text-slate-300">
+                                        ${matchingClass.teacher}
+                                    </div>
+                                    <div class="text-[9px] font-semibold text-blue-600 dark:text-blue-400 truncate">
+                                        ${matchingClass.room}
+                                    </div>
+                                </div>
+                            </td>
+                        `;
+                    } else {
+                        rowHtml += `
+                            <td class="p-2 border border-slate-200/50 dark:border-slate-800/50 text-center text-slate-300 dark:text-slate-700 text-[10px]">
+                                —
+                            </td>
+                        `;
+                    }
+                }
+
+                rowHtml += `</tr>`;
+                tbody.innerHTML += rowHtml;
+            }
+        }
+
+        // Live Clock Header Update
+        function updateClock() {
+            const now = new Date();
+            const dateOptions = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('liveClock').textContent = now.toLocaleDateString('en-US', dateOptions);
+        }
+    </script>
 </body>
 </html>
